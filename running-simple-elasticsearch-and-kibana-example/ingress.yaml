@@ -6,7 +6,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /es
+          - path: /elasticsearch
             backend:
               serviceName: elasticsearch-service
               servicePort: 9200
