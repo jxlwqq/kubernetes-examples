@@ -1,0 +1,1 @@
+# 运行一个简单的 Elasticsearch 服务
