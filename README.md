@@ -1,13 +1,13 @@
 # kubernetes-examples
 
-一些说明：
+说明：
 
 * 为啥不用 Helm？嗯。。。
 * 所有示例均在 Docker for Mac 内置的 Kubernetes 的集群上部署，请勿用于生产环境。
-* 自己动手实验前，请先使用 `kubectl config current-content` 查看当前集群名称，确保切换到本地的 Kubernetes 集群。
+* 动手实验前，请先执行 `kubectl config current-content` 查看当前集群名称，确保切换到本地的 Kubernetes 集群。
 * [安装 Ingress 控制器：ingress-nginx](./ingress-nginx)是所有示例的前提条件。 
 
-经典示例
+经典示例：
 
 * [ingress 路由使用示例](./kubernetes-ingress-with-nginx)
 * [使用 Redis 部署 PHP 留言板应用程序](deploying-php-guestbook-application-with-redis)
