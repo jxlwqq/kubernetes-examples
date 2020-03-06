@@ -39,8 +39,8 @@ kubectl config use-content docker-desktop
 这里我们选择 ingress-nginx
 
 ```bash
-kubectl apply -f ingress-nginx-deployment-and-other-resources-mandatory.yaml
-kubectl apply -f ingress-nginx-service.yaml
+kubectl apply -f ../ingress-nginx/ingress-nginx-deployment-and-other-resources-mandatory.yaml
+kubectl apply -f ../ingress-nginx/ingress-nginx-service.yaml
 ```
 
 注：
