@@ -1,0 +1,11 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: guestbook-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: frontend-service
+              servicePort: 80
