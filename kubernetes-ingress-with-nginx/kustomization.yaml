@@ -1,0 +1,4 @@
+resources:
+  - apple-deployment-and-service.yaml
+  - banana-deployment-and-service.yaml
+  - ingress.yaml

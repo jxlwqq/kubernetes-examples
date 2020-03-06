@@ -1,0 +1,4 @@
+resources:
+  - elasticsearch-statefulset-and-service.yaml
+  - kibana-deployment-and-service.yaml
+  - ingress.yaml
