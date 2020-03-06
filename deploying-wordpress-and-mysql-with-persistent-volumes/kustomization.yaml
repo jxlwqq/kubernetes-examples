@@ -1,0 +1,9 @@
+resources:
+  - mysql-deployment-and-service.yaml
+  - wordpress-deployment-and-service.yaml
+  - ingress.yaml
+
+secretGenerator:
+- name: mysql-pass
+  literals:
+  - password=!@#123 # 自定义密码

@@ -1,0 +1,11 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: wordpress-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: wordpress-service
+              servicePort: 80
