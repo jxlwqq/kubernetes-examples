@@ -1,0 +1,4 @@
+resources:
+  - frontend-deployment-and-service.yaml
+  - mongo-deployment-and-service.yaml
+  - ingress.yaml
