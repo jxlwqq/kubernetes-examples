@@ -1,0 +1,48 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: laravel-deployment
+  labels:
+    app: laravel
+spec:
+  selector:
+    matchLabels:
+      app: laravel
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+        - name: laravel
+          image: jxlwqq/laravel-7-kubernetes-demo
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_HOST
+              value : mysql-service
+            - name: REDIS_HOST
+              value: redis-service
+          envFrom:
+            - configMapRef:
+                name: laravel-env
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: laravel-service
+  labels:
+    app: laravel
+spec:
+  selector:
+    app: laravel
+  ports:
+    - port: 80
+      targetPort: 80
+
