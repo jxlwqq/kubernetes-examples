@@ -32,6 +32,16 @@ spec:
           envFrom:
             - configMapRef:
                 name: laravel-env
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+              scheme: HTTP
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /
+              scheme: HTTP
 ---
 kind: Service
 apiVersion: v1
