@@ -171,9 +171,10 @@ spec: # 对象规约
 为了提高 Pod 的启动速度，我们首先准备好 Laravel-demo 的镜像：
 
 镜像地址：https://hub.docker.com/repository/docker/jxlwqq/laravel-7-kubernetes-demo
+
 源码地址：https://github.com/jxlwqq/laravel-7-kubernetes-demo
 
-基于官方 Laravel v7 版本，做了以下修改：[compare](https://github.com/jxlwqq/laravel-7-kubernetes-demo/compare/e47e5cc7029408ed80e0cd0298d944f5b49b9cdd...master)
+基于官方 Laravel v7 版本，做了以下修改：[点击查看compare](https://github.com/jxlwqq/laravel-7-kubernetes-demo/compare/e47e5cc7029408ed80e0cd0298d944f5b49b9cdd...master)
 
 * 增加了 Docker 镜像构建相关的文件：Dockerfile 和 .dockerignore
 * 增加了一个 config/apache2/sites-available/laravel.conf 
@@ -189,7 +190,7 @@ docker pull jxlwqq/laravel-7-kubernetes-demo
 ```bash
 kubectl apply -f configmap.yaml # 将 env 环境变量配置在了 ConfigMap 对象里
 kubectl apply -f laravel-deployment-and-service.yaml # 部署 Deployment 和 Service
- kubectl apply -f ingress.yaml # 部署 ingress 路由规则
+kubectl apply -f ingress.yaml # 部署 ingress 路由规则
 ```
 
 configmap.yaml 文件解读：
