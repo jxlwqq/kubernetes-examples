@@ -1,15 +1,8 @@
 resources:
   - laravel-deployment-and-service.yaml
-  - mysql-deployment-and-service.yaml
-  - redis-deployment-and-service.yaml
   - ingress.yaml
 
 configMapGenerator:
   - name: laravel-env
     literals:
       - APP_KEY=base64:zC8wVldUZfZJaGaZ7+CPh+5FzaXYmShm7G/Qh6GdRl8=
-
-secretGenerator:
-  - name: mysql-password
-    literals:
-      - MYSQL_ROOT_PASSWORD=!@#123

@@ -17,16 +17,6 @@ spec:
       containers:
         - name: laravel
           image: jxlwqq/laravel-kubernetes-demo
-          env:
-            - name: DB_HOST
-              value: mysql-service
-            - name: DB_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-password
-                  key: MYSQL_ROOT_PASSWORD
-            - name: REDIS_HOST
-              value: redis-service
           envFrom:
             - configMapRef:
                 name: laravel-env
