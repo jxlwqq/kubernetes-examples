@@ -15,8 +15,8 @@
 * [使用 Persistent Volumes 部署 WordPress 和 MySQL](deploying-wordpress-and-mysql-with-persistent-volumes)
 * [部署单节点 Elasticsearch 与 Kibana](running-simple-elasticsearch-and-kibana)
 * [使用 mongoDB 部署 NodeJs 笔记应用程序](deploying-nodejs-note-application-with-mongodb)
-* [使用 MySQL 和 Redis 部署 Laravel Demo](deploying-laravel-application)
-
+* [部署 Laravel Demo](deploying-laravel-application)
+* [使用 MySQL 和 Redis 部署 Laravel 7 Demo](deploying-laravel-7-with-mysql-and-redis)
 #### TODO
 
 * 完善每个示例的 README
