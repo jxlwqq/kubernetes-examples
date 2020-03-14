@@ -1,9 +1,10 @@
 # 轻松部署 Laravel 应用
 
 原文链接：[Kubernetes: deploy Laravel the easy way](https://learnk8s.io/blog/kubernetes-deploy-laravel-the-easy-way)
+
 译文链接：[使用 Kubernetes 来部署你的 Laravel 程序](https://learnku.com/server/t/22017)
 
-注意：原文使用了 minikube 来部署，本文使用的是 Docker for Mac 自带的 Kubernetes 集群。
+注意：原文使用了 minikube 来部署，本文使用的是 Docker for Mac 自带的 Kubernetes 集群。所以做了一些适当的调整。
 
 #### 拉取镜像 
 
