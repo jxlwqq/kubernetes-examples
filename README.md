@@ -1,5 +1,7 @@
 # kubernetes-examples
 
+![ingress](ingress.png)
+
 #### 说明
 
 * 为啥不用 Helm？嗯。。。
