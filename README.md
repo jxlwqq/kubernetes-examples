@@ -1,6 +1,6 @@
 # kubernetes-examples
 
-![ingress](ingress.png)
+<img src='./ingress.png' width='400'>
 
 #### 说明
 
