@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: php-fpm-nginx
+spec:
+  selector:
+    matchLabels:
+      app: php-fpm-nginx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: php-fpm-nginx
+    spec:
+      containers:
+        - name: php-fpm
+          image: jxlwqq/php-info
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: nginx-www
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"]
+        - name: nginx
+          image: nginx:1.7.9
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: nginx-www
+            - mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+              name: nginx-config
+      volumes:
+        - name: nginx-www
+          emptyDir: {}
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: php-fpm-nginx
+spec:
+  selector:
+    app: php-fpm-nginx
+  ports:
+    - port: 80
+      targetPort: 80
+      name: nginx

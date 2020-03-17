@@ -1,0 +1,11 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1beta1
+metadata:
+  name: php-fpm-nginx
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: php-fpm-nginx
+              servicePort: 80
