@@ -1,5 +1,3 @@
-# 使用 MySQL 和 Redis 部署 Laravel 应用
-
 ## 实验前提
 
 * 需要你有 macOS 开发环境，本文以此为例，其他类型的开发环境请自行搭建。
@@ -7,11 +5,22 @@
 * 需要你对 Docker 有一些基本的了解。
 * 需要你对 Kubernetes 中的 Node、Pod、ReplicaSet、Deployment、Service、Ingress、ConfigMap 等一些核心基础概念有一定的了解。
 
+## YAML 配置文件下载地址：
+
+* YAML 文件：[jxlwqq/kubernetes-examples](https://github.com/jxlwqq/kubernetes-examples/tree/master/deploying-laravel-7-with-mysql-and-redis)。该项目还有其他一些 Kubernetes 的示例。欢迎 Star。
+
+```bash
+git clone https://github.com/jxlwqq/kubernetes-examples.git
+cd deploying-laravel-7-with-mysql-and-redis
+```
+
 ## 安装 Docker for Mac
 
 下载地址：https://hub.docker.com/editions/community/docker-ce-desktop-mac
 
 启动并开启 Kubernetes 功能，功能开启过程中，Docker 将会自动拉取 Kubernetes 相关镜像，所以全程需要科学上网。
+
+为啥不使用 minikube？minikube + virtualbox + kubectl 安装起来太繁琐了，而且即使科学上网了你也不一定能搞定。当然阿里云提供了一篇[安装教程](https://yq.aliyun.com/articles/221687)可以参考。
 
 ## 本地端口准备
 
@@ -38,7 +47,7 @@ docker pull mysql:5.7
 kubectl apply -f mysql-deployment-and-service.yaml
 ```
 
-注意：deployment 在生产场景中并不适合。
+注意：deployment 在生产场景中对 MySQL 这种有状态的服务并不适合。
 
 yaml 文件解读：
 
@@ -101,12 +110,13 @@ spec: # 对象规约
   ports: # 端口
     - port: 3306 # 端口号
       targetPort: 3306 # 与 Pod  containerPort 端口号一致
-```
+ ```
 
 进入 Pod：
 
 ```bash
-kubectl exec -it mysql-deployment-79cdbc594-rmhjk mysql # pod 名称改成你自己的
+kubectl get pods # 获取 pods 列表
+kubectl exec -it mysql-deployment-79cdbc594-rmhjk mysql # pod 名称改成你自己
 ```
 
 创建一个名为 laravel 的数据库：
@@ -163,26 +173,126 @@ spec: # 对象规约
     app: redis # 标签，选择 标签包含 app: redis 的 一组 Pod
   ports: # 端口
     - port: 6379 # 暴露的端口，如果 port 和 targetPort 一致，targetPort 可以不写
-```
-
+ ```
 
 ## 创建 Laravel 服务
 
 为了提高 Pod 的启动速度，我们首先准备好 Laravel-demo 的镜像：
 
+```bash
+docker pull jxlwqq/laravel-7-kubernetes-demo
+```
+
 镜像地址：https://hub.docker.com/repository/docker/jxlwqq/laravel-7-kubernetes-demo
 
 源码地址：https://github.com/jxlwqq/laravel-7-kubernetes-demo
 
-基于官方 Laravel v7 版本，做了以下修改：[点击查看compare](https://github.com/jxlwqq/laravel-7-kubernetes-demo/compare/e47e5cc7029408ed80e0cd0298d944f5b49b9cdd...master)
+源码基于官方 Laravel v7 版本，做了以下修改：[点击查看compare](https://github.com/jxlwqq/laravel-7-kubernetes-demo/compare/e47e5cc7029408ed80e0cd0298d944f5b49b9cdd...master)
 
 * 增加了 Docker 镜像构建相关的文件：Dockerfile 和 .dockerignore
 * 增加了一个 config/apache2/sites-available/laravel.conf 
 * 增加了一个 crontab 文件，执行 php artisan schedule:run
 * 增加了一个 docker/entrypoint.sh 文件：Docker 容器启动时执行的命令
 
+我这里把核心的 Dockerfile 和 entrypoint.sh 的代码贴过来：
+
+Dockerfile:
+
 ```bash
-docker pull jxlwqq/laravel-7-kubernetes-demo
+# First Stage
+FROM node:alpine as frontend
+COPY package.json package-lock.json /app/
+RUN cd /app \
+    && npm install
+COPY webpack.mix.js /app/
+COPY resources/js/ /app/resources/js/
+COPY resources/sass/ /app/resources/sass/
+RUN cd /app \
+      && npm run production
+
+# Second Stage
+FROM composer as composer
+COPY database/ /app/database/
+COPY composer.json composer.lock /app/
+RUN cd /app \
+      && composer install \
+           --optimize-autoloader \
+           --ignore-platform-reqs \
+           --prefer-dist \
+           --no-interaction \
+           --no-plugins \
+           --no-scripts \
+           --no-dev
+
+# Third Stage
+FROM php:7.4-apache-buster
+RUN apt-get update \
+    && apt-get install -y vim cron libmagickwand-dev imagemagick
+RUN docker-php-ext-install intl pdo_mysql bcmath \
+    && pecl install redis imagick \
+    && docker-php-ext-enable opcache redis imagick \
+    && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+RUN apt-get clean \
+    && apt-get autoclean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ARG LARAVEL_PATH=/var/www/laravel
+WORKDIR ${LARAVEL_PATH}
+
+COPY . ${LARAVEL_PATH}
+COPY --from=composer /app/vendor/ ${LARAVEL_PATH}/vendor/
+COPY --from=frontend /app/public/js/ ${LARAVEL_PATH}/public/js/
+COPY --from=frontend /app/public/css/ ${LARAVEL_PATH}/public/css/
+COPY --from=frontend /app/mix-manifest.json ${LARAVEL_PATH}/mix-manifest.json
+
+RUN cd ${LARAVEL_PATH} \
+      && php artisan package:discover \
+      && chown www-data:www-data bootstrap/cache \
+      && chown -R www-data:www-data storage/
+
+RUN rm /etc/apache2/sites-enabled/*
+COPY config/apache2 /etc/apache2/
+RUN a2enmod rewrite headers \
+    && a2ensite laravel
+
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint
+RUN chmod +x /usr/local/bin/entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
+```
+entrypoint.sh:
+
+```bash
+#!/usr/bin/env bash
+
+set -e
+
+cd /var/www/laravel
+rm -f public/storage
+
+echo 'migrate'
+php artisan migrate --force
+
+echo 'publish'
+# php artisan vendor:publish --tag=laravel-pagination
+
+echo 'cache'
+php artisan config:cache
+php artisan view:cache
+php artisan route:cache
+php artisan event:cache
+
+echo "cron"
+mkdir -p /var/spool/cron/crontabs/
+cp crontab /var/spool/cron/crontabs/root
+chmod 0644 /var/spool/cron/crontabs/root
+crontab /var/spool/cron/crontabs/root
+cron -f &
+
+echo "queue"
+php artisan queue:work --queue={default} --verbose --tries=3 --timeout=90 &
+
+echo 'http'
+exec apache2-foreground
 ```
 
 部署 Laravel 服务：
@@ -205,7 +315,8 @@ data: # 变量数据，跟 laravel env 文件类似（不是太恰当的比方�
   APP_ENV: production
   DB_DATABASE: laravel
   DB_USERNAME: root
-```
+ ```
+
 laravel-deployment-and-service.yaml 文件解读：
 
 ```yaml
@@ -266,7 +377,7 @@ spec: # 对象规约
   ports: # 端口
     - port: 80 # 暴露的端口
       targetPort: 80 # 与 上面的 Pod containerPort 一致
-```
+ ```
 
 ingress.yaml 文件解读：
 
@@ -284,7 +395,7 @@ spec: # 对象规约
           - backend:
               serviceName: laravel-service # 与 Laravel Service 对象的 metadata name 一致
               servicePort: 80 # Service 端口，与 Laravel Service 对象的 port 一致
-```
+ ```
 
 ## 创建 Ingress-nginx 控制器
 
@@ -292,16 +403,17 @@ spec: # 对象规约
 
 为了让 Ingress 资源工作，集群必须有一个正在运行的 Ingress 控制器。 Kubernetes 官方目前支持和维护 GCE 和 nginx 控制器。
 
-这里我们选择 Ingress-nginx 控制器。
+这里我们选择 Ingress-nginx 控制器：
 
 ```bash
+cd ../ingress-nginx # 切换到 ingress-nginx 目录
 kubectl apply -f ingress-nginx-deployment-and-other-resources-mandatory.yaml
 kubectl apply -f ingress-nginx-service.yaml
 ```
 
 注：
-* ingress-nginx-deployment-and-other-resources-mandatory.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
-* ingress-nginx-service.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud-generic.yaml
+* ingress-nginx-deployment-and-other-resources-mandatory.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
+* ingress-nginx-service.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud-generic.yaml
 
 详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
 
@@ -310,5 +422,12 @@ kubectl apply -f ingress-nginx-service.yaml
 ```bash
 curl http://localhost
 ```
-
 撒花，结束。
+
+## 最后的话
+
+现在的 Demo 将 web 服务、定时任务还有队列监听都放在了一个 Pod 中，无法对其进行扩容（因为定时任务和队列监听会重复）。如果需要对 Laravel 应用进行 HPA 扩容的话，还需要对 Laravel 项目的 docker/entrypint.sh 进行一些改造。将上述的 laravel-deploment 拆分成 3 个 Deploment，将容器分为三个角色，分为是 web、cron、queue。分别提供 web 服务、定时任务以及队列监听。最后对提供 web 服务的 Deploment 设置 HPA，根据 cpu 或者 内存占用率进行自动扩容。
+
+另外，定时任务也可以使用 Kubernetes 的 CronJob 对象来实现。
+
+这是后话，下期再细谈。
