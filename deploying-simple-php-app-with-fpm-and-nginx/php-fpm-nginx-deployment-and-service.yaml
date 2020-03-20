@@ -15,6 +15,8 @@ spec:
       containers:
         - name: php-fpm
           image: jxlwqq/php-info
+          ports:
+            - containerPort: 9000
           volumeMounts:
             - mountPath: /var/www/html
               name: nginx-www
@@ -23,7 +25,7 @@ spec:
               exec:
                 command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"]
         - name: nginx
-          image: nginx:1.7.9
+          image: nginx
           ports:
             - containerPort: 80
           volumeMounts:
@@ -49,4 +51,3 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      name: nginx
