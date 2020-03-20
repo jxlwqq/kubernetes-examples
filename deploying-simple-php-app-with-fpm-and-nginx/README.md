@@ -237,3 +237,7 @@ curl http://localhost
 ```bash
 kubectl delete -f ./
 ```
+
+## 鸣谢
+
+部分内容参考了 https://matthewpalmer.net/kubernetes-app-developer/articles/php-fpm-nginx-kubernetes.html
