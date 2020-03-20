@@ -31,7 +31,7 @@ docker pull hashicorp/http-echo
 如果你本地有多个 Kubernetes 的集群配置，请先切换至名为 docker-desktop 的集群：
 
 ````bash
-kubectl config use-content docker-desktop
+kubectl config use-context docker-desktop
 ````
 
 #### 创建 Ingress 控制器
