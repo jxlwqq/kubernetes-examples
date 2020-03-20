@@ -46,11 +46,15 @@ docker pull jxlwqq/php-info
 
 源码逻辑很简单，打印 phpinfo 信息，Dockerfile 内容如下所示：
 
+php-info/Dockerfile 的代码：
+
 ```Dockerfile
 FROM php:7.4-fpm
 WORKDIR /app
 COPY index.php /app
 ```
+
+php-info/index.php 的代码：
 
 ```php
 <?php
@@ -68,11 +72,11 @@ kubectl apply -f ingress.yaml # ingress 路由规则
 configmap.yaml 文件解读：
 
 ```yaml
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: nginx-config
-data:
+kind: ConfigMap # 对象类型
+apiVersion: v1 # api 版本
+metadata: # 元数据
+  name: nginx-config # 对象名称
+data: # key-value 数据集合
   nginx.conf: | # 将 nginx config 配置写入 ConfigMap 中，经典的 php-fpm 代理设置，这里就不再多说了
     events {
     }
@@ -99,37 +103,37 @@ data:
 php-fpm-nginx-deployment-and-service.yaml 文件解读：
 
 ```yaml
-kind: Deployment
-apiVersion: apps/v1
-metadata:
-  name: php-fpm-nginx
-spec:
-  selector:
-    matchLabels:
+kind: Deployment # 对象类型
+apiVersion: apps/v1 # api 版本
+metadata: # 元数据
+  name: php-fpm-nginx # Deployment 对象名称
+spec: # Deployment 对象规约
+  selector: # 选择器
+    matchLabels: # 标签匹配
       app: php-fpm-nginx
-  replicas: 1
-  template:
-    metadata:
-      labels:
+  replicas: 1 # 副本数量
+  template: # 模版
+    metadata: # Pod 对象的元数据
+      labels: # Pod 对象的标签
         app: php-fpm-nginx
-    spec:
-      containers: # 这里设置了多个容器
-        - name: php-fpm
-          image: jxlwqq/php-info
+    spec: # Pod 对象规约
+      containers: # 这里设置了两个容器
+        - name: php-fpm # 第一个容器名称
+          image: jxlwqq/php-info # 容器镜像
           ports:
             - containerPort: 9000 # php-fpm 端口
-          volumeMounts: 
+          volumeMounts: # 挂载数据卷
             - mountPath: /var/www/html # 挂载两个容器共享的 volume 
               name: nginx-www
           lifecycle: # 生命周期
             postStart: # 当容器处于 postStart 阶段时，执行一下命令
               exec:
-                command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"] # 将 /app/index.php 复制到挂载的volume里
-        - name: nginx
-          image: nginx
+                command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"] # 将 /app/index.php 复制到挂载的 volume 
+        - name: nginx # 第二个容器名称
+          image: nginx # 容器镜像
           ports:
             - containerPort: 80 # nginx 端口
-          volumeMounts:
+          volumeMounts: # nginx 容器挂载了两个 volume，一个是与 php-fpm 容器共享的 volume，另外一个是配置了 nginx.conf 的 volume
             - mountPath: /var/www/html # 挂载两个容器共享的 volume 
               name: nginx-www
             - mountPath: /etc/nginx/nginx.conf #  挂载配置了 nginx.conf 的 volume
@@ -139,25 +143,25 @@ spec:
         - name: nginx-www # 这个 volume 是 php-fpm 容器 和 nginx 容器所共享的，两个容器都 volumeMounts 了
           emptyDir: {}
         - name: nginx-config 
-          configMap: # 这里为啥可以将 configMap 对象通过 volumeMounts 的方式注入到容器中呢，因为本质上 configMap 是一类特殊的 volume
+          configMap: # 有人好奇，这里为啥可以将 configMap 对象通过 volumeMounts 的方式注入到容器中呢，因为本质上 configMap 是一类特殊的 volume
             name: nginx-config
 ---
-kind: Service
-apiVersion: v1
-metadata:
+kind: Service # 对象类型
+apiVersion: v1 # api 版本
+metadata: # 元数据
   name: php-fpm-nginx
 spec:
   selector:
     app: php-fpm-nginx
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 80 
+      targetPort: 80 # Service 将 nginx 容器的 80 端口暴露出来
 ```
 
 ingress.yaml 文件解读：
 
 ```yaml
-kind: Ingress
+kind: Ingress # 对象类型
 apiVersion: networking.k8s.io/v1beta1
 metadata:
   name: php-fpm-nginx
@@ -167,7 +171,7 @@ spec:
         paths:
           - backend:
               serviceName: php-fpm-nginx # 流量转发到名为 php-fpm-nginx 的 Server 是那个
-              servicePort: 80
+              servicePort: 80 # 与 Service 的 port 一致
 ```
 
 ## 自动伸缩
@@ -179,18 +183,18 @@ kubectl apply -f horizontalpodautoscaler.yaml # hpa 水平自动伸缩对象
 horizontalpodautoscaler.yaml 文件解读：
 
 ```yaml
-apiVersion: autoscaling/v2beta2
-kind: HorizontalPodAutoscaler
+kind: HorizontalPodAutoscaler # 对象类型，简称 hpa，水平自动伸缩
+apiVersion: autoscaling/v2beta2 # autoscaling/v2beta2 与 autoscaling/v1 的 API 有很大的不同，注意识别两者的差异
 metadata:
   name: php-fpm-nginx
 spec:
-  scaleTargetRef: # 扩容的目标
-    apiVersion: apps/v1
+  scaleTargetRef: # 伸缩的目标对象
+    apiVersion: apps/v1 # 对象版本
     kind: Deployment # 目标对象的类型
     name: php-fpm-nginx # 目标对象的名称
   minReplicas: 3 # 最小副本数
-  maxReplicas: 10 # 最大副本书
-  metrics: # 指标）
+  maxReplicas: 10 # 最大副本数
+  metrics: # 指标
     - type: Resource # 类型：资源
       resource:
         name: memory # 内存
