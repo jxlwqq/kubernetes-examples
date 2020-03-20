@@ -9,7 +9,7 @@
 
 ## YAML 配置文件下载地址：
 
-* YAML 文件：[jxlwqq/kubernetes-examples](https://github.com/jxlwqq/kubernetes-examples/tree/master/deploying-laravel-7-with-mysql-and-redis)。该项目还有其他一些 Kubernetes 的示例。欢迎 Star。
+* YAML 文件：[jxlwqq/kubernetes-examples](https://github.com/jxlwqq/kubernetes-examples/tree/master/deploying-simple-php-app-with-fpm-and-nginx)。该项目还有其他一些 Kubernetes 的示例。欢迎 Star。
 
 ```bash
 git clone https://github.com/jxlwqq/kubernetes-examples.git
