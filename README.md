@@ -19,6 +19,8 @@
 * [使用 mongoDB 部署 NodeJs 笔记应用程序](deploying-nodejs-note-application-with-mongodb)
 * [部署 Laravel Demo](deploying-laravel-application)
 * [使用 MySQL 和 Redis 部署 Laravel 7 Demo](deploying-laravel-7-with-mysql-and-redis)
+* [使用 PHP-FPM 和 Nginx 部署一个 简单的 phpinfo 应用](deploying-simple-php-app-with-fpm-and-nginx)
+
 #### TODO
 
 * 完善每个示例的 README
