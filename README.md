@@ -12,10 +12,10 @@
 
 #### 经典示例
 
-* [ingress 路由使用示例](./kubernetes-ingress-with-nginx)
+* [ingress 路由使用示例](deploying-simple-apple-and-banana-ingress)
 * [使用 Redis 部署 PHP 留言板应用程序](deploying-php-guestbook-application-with-redis)
 * [使用 Persistent Volumes 部署 WordPress 和 MySQL](deploying-wordpress-and-mysql-with-persistent-volumes)
-* [部署单节点 Elasticsearch 与 Kibana](running-simple-elasticsearch-and-kibana)
+* [部署单节点 Elasticsearch 与 Kibana](deploying-simple-elasticsearch-and-kibana)
 * [使用 mongoDB 部署 NodeJs 笔记应用程序](deploying-nodejs-note-application-with-mongodb)
 * [部署 Laravel Demo](deploying-laravel-application)
 * [使用 MySQL 和 Redis 部署 Laravel 7 Demo](deploying-laravel-7-with-mysql-and-redis)
