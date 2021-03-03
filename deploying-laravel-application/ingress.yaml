@@ -1,5 +1,5 @@
+apiVersion: networking.k8s.io/v1
 kind: Ingress
-apiVersion: networking.k8s.io/v1beta1
 metadata:
   name: laravel-ingress
   labels:
@@ -8,6 +8,10 @@ spec:
   rules:
     - http:
         paths:
-          - backend:
-              serviceName: laravel-service
-              servicePort: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: laravel-service
+                port:
+                  number: 80
