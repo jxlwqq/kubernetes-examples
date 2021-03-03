@@ -1,3 +1,2 @@
 resources:
-  - ingress-nginx-deployment-and-other-resources-mandatory.yaml
-  - ingress-nginx-service.yaml
+  - deploy.yaml

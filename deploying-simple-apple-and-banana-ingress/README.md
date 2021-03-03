@@ -39,13 +39,12 @@ kubectl config use-context docker-desktop
 这里我们选择 ingress-nginx
 
 ```bash
-kubectl apply -f ../ingress-nginx/ingress-nginx-deployment-and-other-resources-mandatory.yaml
-kubectl apply -f ../ingress-nginx/ingress-nginx-service.yaml
+cd ../ingress-nginx # 切换到 ingress-nginx 目录
+kubectl apply -f deploy.yaml
 ```
 
 注：
-* ingress-nginx-deployment-and-other-resources-mandatory.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/mandatory.yaml
-* ingress-nginx-service.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud-generic.yaml
+* deploy.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
 
 详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
 
