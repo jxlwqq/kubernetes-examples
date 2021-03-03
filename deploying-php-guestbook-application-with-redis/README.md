@@ -1,0 +1,1 @@
+原文：https://v1-19.docs.kubernetes.io/zh/docs/tutorials/stateless-application/guestbook/
