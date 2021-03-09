@@ -1,0 +1,3 @@
+resources:
+  - hello-web-deployment-and-service.yaml
+  - ingress.yaml
