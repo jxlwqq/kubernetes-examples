@@ -12,8 +12,8 @@ docker pull gcr.io/google-samples/hello-app:2.0
 执行 `docker image ls` 命令，可见以下两个镜像: 
 
 ```
-gcr.io/google-samples/hello-app                                  1.0                                                     bc5c421ecd6c   3 years ago     9.86MB
-gcr.io/google-samples/hello-app                                  2.0                                                     c5607c30fb08   3 years ago     9.86MB
+gcr.io/google-samples/hello-app   1.0   bc5c421ecd6c   3 years ago     9.86MB
+gcr.io/google-samples/hello-app   2.0   c5607c30fb08   3 years ago     9.86MB
 ```
 
 
