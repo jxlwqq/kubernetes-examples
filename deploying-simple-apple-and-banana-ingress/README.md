@@ -43,10 +43,10 @@ cd ../ingress-nginx # 切换到 ingress-nginx 目录
 kubectl apply -f deploy.yaml
 ```
 
-注：
-* deploy.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
+注：deploy.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
 
 详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
+
 
 #### 创建 Apple 资源（kind: Deployment 与 kind: Service）
 
