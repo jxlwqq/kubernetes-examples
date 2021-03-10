@@ -116,7 +116,7 @@ spec: # 对象规约
 
 ```bash
 kubectl get pods # 获取 pods 列表
-kubectl exec -it mysql-deployment-79cdbc594-rmhjk mysql # pod 名称改成你自己
+kubectl exec mysql-deployment-79cdbc594-rmhjk -it -- mysql # pod 名称改成你自己
 ```
 
 创建一个名为 laravel 的数据库：
