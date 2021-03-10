@@ -82,20 +82,3 @@ curl http://localhost/pear   # return 404
 ```
 
 结束，撒花。
-
-#### 尾巴
-
-如果你想使用 minikube 作为本地集群的话，可以使用以下命令安装：
-
-minikube 的安装需要一些外部的依赖组件：详见阿里云的这篇文章：[Minikube - Kubernetes本地实验环境](https://yq.aliyun.com/articles/221687)
-
-```bash
-brew update
-brew install minikube
-minikube delete && rm -fr ~/.minikube/
-minikube start --vm-driver=virtualbox \
-               --image-mirror-country cn \
-               --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers \
-               --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.7.3.iso \
-               --registry-mirror=https://xxxxxx.mirror.aliyuncs.com
-```
