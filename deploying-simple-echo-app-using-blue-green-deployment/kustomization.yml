@@ -1,0 +1,5 @@
+resources:
+  - echo-v1-deployment.yaml
+  - echo-v2-deployment.yaml
+  - service.yaml
+  - ingress.yaml
