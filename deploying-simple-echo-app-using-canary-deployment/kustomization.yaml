@@ -1,0 +1,5 @@
+resources:
+  - echo-v1-deployment-and-service.yaml
+  - echo-v2-deployment-and-service.yaml
+  - ingress.yaml
+  - ingress-canary-by-header.yaml
