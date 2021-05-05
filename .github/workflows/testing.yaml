@@ -8,12 +8,11 @@ jobs:
       - uses: actions/checkout@v2
       - uses: engineerd/setup-kind@v0.5.0
       - name: Testing
-        working-directory: ingress-nignx
         run: |
           kubectl cluster-info
           kubectl get pods -n kube-system
           echo "current-context:" $(kubectl config current-context)
           echo "environment-kubeconfig:" ${KUBECONFIG}
           ls
-          kubectl apply -k .
+          kubectl apply -k /ingress-nginx
           kubectl get pods -n default
