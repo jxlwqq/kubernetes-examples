@@ -14,6 +14,6 @@ jobs:
           echo "current-context:" $(kubectl config current-context)
           echo "environment-kubeconfig:" ${KUBECONFIG}
           ls
-          kubectl apply -k ingress-nignx
+          kubectl apply -k ./ingress-nignx
           kubectl apply -k deploying-simple-echo-app-using-canary-deployment
           kubectl get pods -n default
