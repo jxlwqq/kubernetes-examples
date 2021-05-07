@@ -184,6 +184,8 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 
 > 提示：在虚拟机：`k8s-2` 和 `k8s-3`中执行命令。
 
+两个参数 token 和 hash 的值替换成你自己集群返回的值：
+
 ```shell
 sudo kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
