@@ -215,7 +215,7 @@ k8s-2   Ready    <none>                 12m   v1.21.0
 k8s-3   Ready    <none>                 11m   v1.21.0
 ```
 
-#### 清场
+### 清场
 
 销毁虚拟机：
 
@@ -223,7 +223,7 @@ k8s-3   Ready    <none>                 11m   v1.21.0
 vagrant destroy
 ```
 
-#### 参考
+### 参考
 
 * [Vagrant box centos/7](https://app.vagrantup.com/centos/boxes/7)
 * [Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
