@@ -2,16 +2,16 @@
 
 本地开发环境以 macOS 为例。
 
-#### 安装 VirtualBox 和 Vagrant
+### 安装 VirtualBox 和 Vagrant
 
 * 安装 [VirtualBox](https://www.virtualbox.org/)
-* 安装 [Vagrant](https://www.vagrantup.com
+* 安装 [Vagrant](https://www.vagrantup.com)
 
-#### 启动虚拟机
+### 启动虚拟机
 
-虚拟机配置了3台，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.12)`。配置详见 Vagrantfile 这个文件。
+虚拟机配置了3台，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.12)`。配置详见 [Vagrantfile](./Vagrantfile)这个文件。
 
-虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 `config.vm.provision "shell"` 中信息。Vagrant 是用 Ruby 写的，语法都是通用的，应该能看懂。
+虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 [config.vm.provision "shell"](./Vagrantfile#L39) 中信息。Vagrant 是用 Ruby 写的，语法都是通用的，应该能看懂，看不懂也没关系。
 
 ```shell
 cd installing-kubernetes-with-deployment-tools # 进入这个目录
@@ -19,7 +19,9 @@ vagrant box add centos/7 # 提前下载操作系统镜像文件，方便后续�
 vagrant up # 启动虚拟机
 ```
 
-#### 登录虚拟机
+### 登录虚拟机
+
+开3个命令行窗口，分别登录这3台虚拟机：
 
 ```shell
 vagrant ssh k8s-1 # 这台作为 master
@@ -27,7 +29,7 @@ vagrant ssh k8s-2 # node
 vagrant ssh k8s-3 # node
 ```
 
-#### 允许 iptables 检查桥接流量
+### 允许 iptables 检查桥接流量
 
 > 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
@@ -47,7 +49,7 @@ EOF
 sudo sysctl --system
 ```
 
-#### 安装 kubeadm、kubelet 和 kubectl
+### 安装 kubeadm、kubelet 和 kubectl
 
 > 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
@@ -77,7 +79,7 @@ sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 ```
 
-#### 配置 cgroup 驱动程序
+### 配置 cgroup 驱动程序
 
 > 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
@@ -99,7 +101,7 @@ EOF
 sudo systemctl restart docker
 ```
 
-#### 验证与 gcr.io 容器镜像仓库的连通性
+### 验证与 gcr.io 容器镜像仓库的连通性
 
 > 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
@@ -146,7 +148,7 @@ sudo docker tag coredns/coredns:1.8.0 k8s.gcr.io/coredns/coredns:v1.8.0
 sudo docker rmi coredns/coredns:1.8.0
 ```
 
-#### 初始化 master 节点
+### 初始化 master 节点
 
 > 提示：在虚拟机：`k8s-1`中执行命令。
 
