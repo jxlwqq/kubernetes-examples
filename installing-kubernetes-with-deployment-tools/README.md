@@ -109,6 +109,8 @@ sudo systemctl restart docker
 
 我们通过拉取阿里云的Docker镜像仓库，然后在打 Tag 的方式，来曲线解决这个问题。
 
+node 节点上部分 image 是使用不到的，我们暂时就都一股脑的都 pull 下来。
+
 ```shell
 kubeadm config images list # 查看所需的镜像
 
@@ -171,7 +173,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
 ```
 
-#### node 加入集群
+### node 加入集群
 
 > 提示：在虚拟机：`k8s-2` 和 `k8s-3`中执行命令。
 
@@ -180,7 +182,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
 ```
 
-#### 安装 Pod 网络附加组件
+### 安装 Pod 网络附加组件
 
 > 提示：在虚拟机：`k8s-1`中执行命令。
 
@@ -190,7 +192,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
-#### 查看 node 状态
+### 查看 node 状态
 
 > 提示：在虚拟机：`k8s-1`中执行命令。
 
