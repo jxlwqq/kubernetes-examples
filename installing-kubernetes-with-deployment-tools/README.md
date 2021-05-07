@@ -14,6 +14,7 @@
 虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 [config.vm.provision "shell"](./Vagrantfile#L39) 中信息。Vagrant 是用 Ruby 写的，语法都是通用的，应该能看懂，看不懂也没关系。
 
 ```shell
+git clone https://github.com/jxlwqq/kubernetes-examples.git # clone 仓库到本地
 cd installing-kubernetes-with-deployment-tools # 进入这个目录
 vagrant box add centos/7 # 提前下载操作系统镜像文件，方便后续快速启动
 vagrant up # 启动虚拟机
@@ -212,3 +213,15 @@ k8s-1   Ready    control-plane,master   12m   v1.21.0
 k8s-2   Ready    <none>                 12m   v1.21.0
 k8s-3   Ready    <none>                 11m   v1.21.0
 ```
+
+#### 清场
+
+销毁虚拟机：
+
+```shell
+vagrant destroy
+```
+
+#### 参考
+
+* 
