@@ -99,6 +99,7 @@ cat <<EOF | sudo tee /etc/docker/daemon.json
 }
 EOF
 
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
@@ -224,4 +225,11 @@ vagrant destroy
 
 #### 参考
 
-* 
+* [Vagrant box centos/7](https://app.vagrantup.com/centos/boxes/7)
+* [Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
+* [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
+* [Configure the Docker daemon, in particular to use systemd for the management of the container’s cgroups](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker)
+* [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)
+* [Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/#how-to-implement-the-kubernetes-networking-model)
+* [阿里云 kubernetes yum 仓库镜像](https://developer.aliyun.com/article/433817)
+* [让 K8S 在 GFW 内愉快的航行](https://developer.aliyun.com/article/759310)
