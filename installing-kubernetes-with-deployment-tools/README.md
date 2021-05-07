@@ -9,7 +9,7 @@
 
 #### 启动虚拟机
 
-虚拟机配置了3台，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.11)`。配置详见 Vagrantfile 这个文件。
+虚拟机配置了3台，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.12)`。配置详见 Vagrantfile 这个文件。
 
 虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 `config.vm.provision "shell"` 中信息。Vagrant 是用 Ruby 写的，语法都是通用的，应该能看懂。
 
@@ -29,11 +29,7 @@ vagrant ssh k8s-3 # node
 
 #### 允许 iptables 检查桥接流量
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
 确保 br_netfilter 模块被加载。这一操作可以通过运行 lsmod | grep br_netfilter 来完成。若要显式加载该模块，可执行 sudo modprobe br_netfilter。
 
@@ -53,11 +49,7 @@ sudo sysctl --system
 
 #### 安装 kubeadm、kubelet 和 kubectl
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
 使用阿里云的镜像进行安装：
 
@@ -87,11 +79,7 @@ sudo systemctl enable --now kubelet
 
 #### 配置 cgroup 驱动程序
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
 配置 Docker 守护程序，尤其是使用 systemd 来管理容器的 cgroup：
 
@@ -113,11 +101,7 @@ sudo systemctl restart docker
 
 #### 验证与 gcr.io 容器镜像仓库的连通性
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`、`k8s-2` 和 `k8s-3`中执行命令。
 
 使用 `kubeadm config images pull` 验证与 gcr.io 容器镜像仓库的连通性，不过会失败。
 
@@ -164,11 +148,7 @@ sudo docker rmi coredns/coredns:1.8.0
 
 #### 初始化 master 节点
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`中执行命令。
 
 ```shell
 sudo kubeadm init --kubernetes-version=v1.21.0 --apiserver-advertise-address=192.168.205.10  --pod-network-cidr=10.244.0.0/16
@@ -191,12 +171,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 
 #### node 加入集群
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-2
-vagrant ssh k8s-3
-```
+> 提示：在虚拟机：`k8s-2` 和 `k8s-3`中执行命令。
 
 ```shell
 kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
@@ -205,11 +180,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 
 #### 安装 Pod 网络附加组件
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`中执行命令。
 
 这里选择 flannel：
 
@@ -219,11 +190,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 
 #### 查看 node 状态
 
-所在虚拟机：
-
-```shell
-vagrant ssh k8s-1
-```
+> 提示：在虚拟机：`k8s-1`中执行命令。
 
 ```shell
 kubectl get nodes
