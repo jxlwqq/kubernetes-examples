@@ -25,6 +25,7 @@ vagrant up # 启动虚拟机
 开3个命令行窗口，分别登录这3台虚拟机：
 
 ```shell
+cd installing-kubernetes-with-deployment-tools # 一定要进入在 Vagrantfile 所在的目录
 vagrant ssh k8s-1 # 这台作为 master
 vagrant ssh k8s-2 # node
 vagrant ssh k8s-3 # node
