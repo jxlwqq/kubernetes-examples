@@ -56,7 +56,7 @@ sudo sysctl --system
 使用阿里云的镜像进行安装：
 
 ```shell
-sudo cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
 baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
@@ -161,6 +161,8 @@ sudo kubeadm init --kubernetes-version=v1.21.0 --apiserver-advertise-address=192
 根据返回的提示：设置：
 
 ```shell
+# To start using your cluster, you need to run the following as a regular user:
+
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -169,6 +171,8 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 最后返回 join 的信息：
 
 ```shell
+# Then you can join any number of worker nodes by running the following on each as root:
+
 kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
 ```
@@ -178,7 +182,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 > 提示：在虚拟机：`k8s-2` 和 `k8s-3`中执行命令。
 
 ```shell
-kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
+sudo kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
 ```
 
