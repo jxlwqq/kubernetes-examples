@@ -26,7 +26,7 @@
 
 ---
 
-#### 本地安装多集群
+#### 本地安装多节点集群
 
 * [vagrant-centos7-kubeadm](installing-kubernetes-with-deployment-tools)
 * [vagrant-ubuntu18.04-kubeadm](cka-training/1.install.md)
