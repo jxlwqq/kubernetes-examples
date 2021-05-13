@@ -55,9 +55,9 @@ kubectl get pvc     # 查看 persistentVolumeClaim
 
 #### 设置 WordPress
 
-浏览器打开 http://localhost:80，设置用户名和密码后：
+浏览器打开 http://localhost:80 ，设置用户名和密码：
 
-<img src="hello-world.png" width="400" />
+![wordpress:hello-world](hello-world.png)
 
 
 #### 清场
