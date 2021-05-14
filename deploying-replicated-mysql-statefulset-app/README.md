@@ -9,7 +9,9 @@ docker rmi ist0ne/xtrabackup:1.0
 ```
 
 https://k8s.io/examples/application/mysql/mysql-configmap.yaml
+
 https://k8s.io/examples/application/mysql/mysql-services.yaml
+
 https://k8s.io/examples/application/mysql/mysql-statefulset.yaml
 
 ```shell
@@ -54,9 +56,6 @@ kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
 ```
 
 ```shell
-grace=$(kubectl get pods mysql-0 --template '{{.spec.terminationGracePeriodSeconds}}')
-kubectl delete statefulset -l app=mysql
-sleep $grace
-kubectl delete pvc -l app=mysql
+kubectl delete -f .
 ```
 
