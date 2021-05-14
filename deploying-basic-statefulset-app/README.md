@@ -23,7 +23,7 @@ kubectl apply -f nginx-statefulset-and-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: nginx # 无头服务 name
   labels:
     app: nginx
 spec:
