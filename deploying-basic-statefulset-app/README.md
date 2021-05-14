@@ -1,4 +1,3 @@
-
 ```shell
 docker pull registry.aliyuncs.com/google_containers/nginx-slim:0.8
 docker tag registry.aliyuncs.com/google_containers/nginx-slim:0.8 k8s.gcr.io/nginx-slim:0.8
@@ -31,7 +30,7 @@ spec:
   ports:
     - port: 80
       name: web
-  clusterIP: None
+  clusterIP: None # 无头服务（Headless Services），负责 Pod 稳定的、唯一的网络标识
   selector:
     app: nginx
 ---
@@ -40,7 +39,7 @@ kind: StatefulSet
 metadata:
   name: web
 spec:
-  serviceName: nginx
+  serviceName: nginx # 无头服务 name
   replicas: 2
   selector:
     matchLabels:
@@ -63,7 +62,7 @@ spec:
     - metadata:
         name: www
       spec:
-        accessModes: [ "ReadWriteOnce" ] 
+        accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
             storage: 1Gi
