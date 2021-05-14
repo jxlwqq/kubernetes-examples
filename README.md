@@ -23,6 +23,8 @@
 * [部署一个简单的 Go Web 应用](deploying-hello-world-web-application-with-go)
 * [使用蓝绿发布策略部署一个 echo 应用](deploying-simple-echo-app-using-blue-green-deployment)
 * [使用金丝雀发布策略部署一个 echo 应用](deploying-simple-echo-app-using-canary-deployment)
+* [部署一个基本的 StatefulSet 应用](deploying-basic-statefulset-app)
+* [部署一个 MySQL 集群 StatefulSet 应用](deploying-replicated-mysql-statefulset-app)
 
 ---
 
