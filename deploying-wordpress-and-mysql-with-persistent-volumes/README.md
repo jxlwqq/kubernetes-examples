@@ -37,7 +37,7 @@ kubectl exec mysql-deployment-5d585f4476-h7rgr -it -- mysql -uroot -p # mysql-de
 密码: `!@#123`
 
 ```mysql
-create database `wordpressdb`;
+CREATE DATABASE IF NOT EXISTS `wordpressdb`;
 ```
 
 #### 查看各类资源 

@@ -28,7 +28,7 @@ spec:
             - name: WORDPRESS_DB_HOST
               value: mysql-service # 这里需要注意填写 mysql-service 中 metadata name 的值
             - name: WORDPRESS_DB_NAME
-              value: wordpressdb
+              value: wordpressdb # 这个需要手动创建数据库
             - name: WORDPRESS_DB_USER
               value: root
             - name: WORDPRESS_DB_PASSWORD
