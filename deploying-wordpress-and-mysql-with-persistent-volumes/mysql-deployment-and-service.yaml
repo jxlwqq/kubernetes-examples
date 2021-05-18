@@ -1,7 +1,7 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: mysql-deploy
   labels:
     app: wordpress
 spec:
@@ -30,17 +30,17 @@ spec:
             - containerPort: 3306
               name: mysql
           volumeMounts:
-            - name: mysql-persistent-storage
+            - name: mysql-volume
               mountPath: /var/lib/mysql
       volumes:
-        - name: mysql-persistent-storage
+        - name: mysql-volume
           persistentVolumeClaim:
-            claimName: mysql-persistentvolumeclaim
+            claimName: mysql-pvc
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-persistentvolumeclaim
+  name: mysql-pvc
   labels:
     app: wordpress
 spec:
@@ -53,7 +53,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-service
+  name: mysql-svc
   labels:
     app: wordpress
 spec:
