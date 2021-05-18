@@ -31,7 +31,7 @@ kubectl apply -k .
 5 版本的 WordPress 将不在自动创建数据库，所以这里我们需要手动登录 mysql 的容器中来 create 数据库。
 
 ```shell
-kubectl exec mysql-deployment-5d585f4476-h7rgr -it -- mysql -uroot -p # mysql-deployment-5d585f4476-h7rgr pod名称替换成你自己的
+kubectl exec mysql-deploy-5d585f4476-h7rgr -it -- mysql -uroot -p # mysql-deploy-5d585f4476-h7rgr pod名称替换成你自己的
 ```
 
 密码: `!@#123`
