@@ -195,11 +195,15 @@ sudo kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 
 > 提示：在虚拟机：`k8s-1`中执行命令。
 
-这里选择 flannel：
+这里选择 [calico](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-onprem/onpremises)：
+
+不选择 flannel 的原因是 flannel 暂不支持 NetworkPolicy 等新特性。
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
+
+等待约 1 分钟，Node 的状态会从 NotReady->Ready
 
 ### 查看 node 状态
 
