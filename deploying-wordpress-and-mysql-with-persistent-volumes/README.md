@@ -3,7 +3,7 @@
 
 #### 前提
 
-ingress-nginx 控制器已经运行。
+确保 ingress-nginx 控制器已经运行。
 
 ```bash
 cd ingress-nginx/ # 切换到 ingress-nginx 目录
