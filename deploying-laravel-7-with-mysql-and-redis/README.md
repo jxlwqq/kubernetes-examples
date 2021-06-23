@@ -286,10 +286,10 @@ mkdir -p /var/spool/cron/crontabs/
 cp crontab /var/spool/cron/crontabs/root
 chmod 0644 /var/spool/cron/crontabs/root
 crontab /var/spool/cron/crontabs/root
-cron -f &
+cron -f & # 注意：此处是不符合容器的"单进程"的设计理念的，请勿在生产环境中使用
 
 echo "queue"
-php artisan queue:work --queue={default} --verbose --tries=3 --timeout=90 &
+php artisan queue:work --queue={default} --verbose --tries=3 --timeout=90 & # 注意：此处是不符合容器的"单进程"的设计理念的，请勿在生产环境中使用
 
 echo 'http'
 exec apache2-foreground
