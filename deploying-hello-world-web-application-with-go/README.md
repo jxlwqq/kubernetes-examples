@@ -1,6 +1,7 @@
-原文：https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app?hl=zh-cn
 
-> 原文为 Google Kubernetes Engine(GKE) 的部署应用的教程。本文稍作修改，使其可以部署在本地集群中。
+> [原文](https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app) 为 Google Kubernetes Engine(GKE) 的部署应用的教程。本文稍作修改，使其可以部署在本地集群中。
+
+在本示例中，我们将部署一个名为 hello-app 的示例 Web 应用[源代码](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app)，这是一个用 Go 编写的 Web 服务器，响应请求并显示 Hello, World! 消息。
 
 #### 拉取镜像
 

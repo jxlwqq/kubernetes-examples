@@ -2,10 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-web
-  labels:
-    app.kubernetes.io/name: hello-web
-    app.kubernetes.io/component: frontend
-
 spec:
   rules:
     - http:
@@ -14,6 +10,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: hello-web
+                name: hello-web-svc
                 port:
                   number: 80

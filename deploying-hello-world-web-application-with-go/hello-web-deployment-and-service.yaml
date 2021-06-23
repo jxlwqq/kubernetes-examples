@@ -2,9 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-web
-  labels:
-    app.kubernetes.io/name: hello-web
-    app.kubernetes.io/component: frontend
 spec:
   selector:
     matchLabels:
@@ -31,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-web
+  name: hello-web-svc
   labels:
     app.kubernetes.io/name: hello-web
     app.kubernetes.io/component: frontend
