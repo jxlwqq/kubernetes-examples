@@ -16,6 +16,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: echo-v2
+                name: echo-v2-svc
                 port:
                   number: 80

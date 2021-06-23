@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-v2
+  name: echo-v2-svc
 spec:
   selector:
     app: echo
