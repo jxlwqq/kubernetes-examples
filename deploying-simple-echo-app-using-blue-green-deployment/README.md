@@ -80,7 +80,7 @@ spec:
         - name: echo
           image: hashicorp/http-echo
           args:
-            - "-text=echo-v2" # 响应请求，返回"echo-v1"
+            - "-text=echo-v2" # 响应请求，返回"echo-v2"
           ports:
             - name: http
               protocol: TCP
@@ -143,6 +143,8 @@ curl 127.0.0.1 # 返回 echo-v1
 ```shell
 kubectl patch service echo-svc -p '{"spec":{"selector":{"app": "echo", "version": "v2"}}}'
 ```
+
+访问验证：
 
 ```shell
 curl 127.0.0.1 # 返回 echo-v2
