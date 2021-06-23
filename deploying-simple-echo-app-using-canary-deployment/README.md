@@ -6,6 +6,13 @@
 
 本文以 canary-by-header 策略作为示例。
 
+#### 前提条件：部署 nginx ingress
+
+```bash
+cd ../ingress-nginx # 切换到 ingress-nginx 目录
+kubectl apply -f deploy.yaml
+```
+
 #### 部署 v1 版本的 echo 服务
 
 执行以下命令：
