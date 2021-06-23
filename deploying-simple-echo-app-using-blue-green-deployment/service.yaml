@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo
+  name: echo-svc
 spec:
   selector:
     app: echo
+    version: v1
   ports:
     - port: 80
       targetPort: 5678

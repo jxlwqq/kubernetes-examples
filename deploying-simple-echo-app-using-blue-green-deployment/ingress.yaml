@@ -10,6 +10,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: echo
+                name: echo-svc
                 port:
-                  number: 5678
+                  number: 80
