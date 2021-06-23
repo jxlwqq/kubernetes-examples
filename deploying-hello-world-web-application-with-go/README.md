@@ -3,6 +3,13 @@
 
 在本示例中，我们将部署一个名为 hello-app 的示例 Web 应用[源代码](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/master/hello-app)，这是一个用 Go 编写的 Web 服务器，响应请求并显示 Hello, World! 消息。
 
+#### 前提条件：部署 nginx ingress
+
+```bash
+cd ../ingress-nginx # 切换到 ingress-nginx 目录
+kubectl apply -f deploy.yaml
+```
+
 #### 拉取镜像
 
 ```bash
