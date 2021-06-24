@@ -156,7 +156,7 @@ kubectl apply -f ingress-canary-by-header.yaml
 
 `ingress-canary-by-header.yaml`的解读：
 
-```shell
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
