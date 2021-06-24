@@ -4,7 +4,9 @@
 
 目前 Nginx Ingress 支持基于 Header、Cookie 和服务权重3种流量切分的策略。 通过给 Ingress 资源指定 Nginx Ingress 所支持的 annotation 可实现金丝雀发布。需给服务创建2个 Ingress，其中1个常规 Ingress，另1个为带 nginx.ingress.kubernetes.io/canary: "true" 固定的 annotation 的 Ingress，称为 Canary Ingress。Canary Ingress 一般代表新版本的服务，结合另外针对流量切分策略的 annotation 一起配置即可实现多种场景的金丝雀发布。
 
-本文以 canary-by-header 策略作为示例。
+本文以 canary-by-header 策略作为示例。实现以下场景：
+
+来自北京和上海的用户体验新版本的服务，而来自其他地区的用户继续使用老版本的服务。
 
 #### 前提条件：部署 nginx ingress
 
