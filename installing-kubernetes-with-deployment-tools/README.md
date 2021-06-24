@@ -118,24 +118,24 @@ node 节点上部分 image 是使用不到的，我们暂时就都一股脑的�
 kubeadm config images list # 查看所需的镜像
 
 # 替换 kube-apiserver
-sudo docker pull registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.0
-sudo docker tag registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.0 k8s.gcr.io/kube-apiserver:v1.21.0
-sudo docker rmi registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.0
+sudo docker pull registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.2
+sudo docker tag registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.2 k8s.gcr.io/kube-apiserver:v1.21.2
+sudo docker rmi registry.aliyuncs.com/google_containers/kube-apiserver:v1.21.2
 
 # 替换 kube-controller-manager
-sudo docker pull registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.0
-sudo docker tag registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.0 k8s.gcr.io/kube-controller-manager:v1.21.0
-sudo docker rmi registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.0
+sudo docker pull registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.2
+sudo docker tag registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.2 k8s.gcr.io/kube-controller-manager:v1.21.2
+sudo docker rmi registry.aliyuncs.com/google_containers/kube-controller-manager:v1.21.2
 
 # 替换 kube-scheduler
-sudo docker pull registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.0
-sudo docker tag registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.0 k8s.gcr.io/kube-scheduler:v1.21.0
-sudo docker rmi registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.0
+sudo docker pull registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.2
+sudo docker tag registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.2 k8s.gcr.io/kube-scheduler:v1.21.2
+sudo docker rmi registry.aliyuncs.com/google_containers/kube-scheduler:v1.21.2
 
 # 替换 kube-proxy
-sudo docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.21.0
-sudo docker tag registry.aliyuncs.com/google_containers/kube-proxy:v1.21.0 k8s.gcr.io/kube-proxy:v1.21.0
-sudo docker rmi registry.aliyuncs.com/google_containers/kube-proxy:v1.21.0
+sudo docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.21.2
+sudo docker tag registry.aliyuncs.com/google_containers/kube-proxy:v1.21.2 k8s.gcr.io/kube-proxy:v1.21.2
+sudo docker rmi registry.aliyuncs.com/google_containers/kube-proxy:v1.21.2
 
 # 替换 pause
 sudo docker pull registry.aliyuncs.com/google_containers/pause:3.4.1
@@ -158,7 +158,7 @@ sudo docker rmi coredns/coredns:1.8.0
 > 提示：在虚拟机：`k8s-1`中执行命令。
 
 ```shell
-sudo kubeadm init --kubernetes-version=v1.21.0 --apiserver-advertise-address=192.168.205.10  --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --kubernetes-version=v1.21.2 --apiserver-advertise-address=192.168.205.10  --pod-network-cidr=10.244.0.0/16
 ```
 
 根据返回的提示：设置：
@@ -217,9 +217,9 @@ kubectl get nodes
 
 ```shell
 NAME    STATUS   ROLES                  AGE   VERSION
-k8s-1   Ready    control-plane,master   12m   v1.21.0
-k8s-2   Ready    <none>                 12m   v1.21.0
-k8s-3   Ready    <none>                 11m   v1.21.0
+k8s-1   Ready    control-plane,master   12m   v1.21.2
+k8s-2   Ready    <none>                 12m   v1.21.2
+k8s-3   Ready    <none>                 11m   v1.21.2
 ```
 
 
@@ -264,9 +264,9 @@ kubectl get nodes -o wide
 
 ```shell
 NAME    STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
-k8s-1   Ready    control-plane,master   49m   v1.21.0   192.168.205.10   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
-k8s-2   Ready    <none>                 48m   v1.21.0   192.168.205.11   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
-k8s-3   Ready    <none>                 37m   v1.21.0   192.168.205.12   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
+k8s-1   Ready    control-plane,master   49m   v1.21.2   192.168.205.10   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
+k8s-2   Ready    <none>                 48m   v1.21.2   192.168.205.11   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
+k8s-3   Ready    <none>                 37m   v1.21.2   192.168.205.12   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
 ```
 
 ### 清理
