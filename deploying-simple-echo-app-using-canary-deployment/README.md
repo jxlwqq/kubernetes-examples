@@ -191,7 +191,7 @@ curl -H "Host: canary.example.com" -H "Region: guangzhou" 127.0.0.1 # 返回：e
 ```
 
 
-#### 清场
+#### 清理
 
 ```shell
 kubectl delete -k .

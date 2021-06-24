@@ -150,7 +150,7 @@ kubectl patch service echo-svc -p '{"spec":{"selector":{"app": "echo", "version"
 curl 127.0.0.1 # 返回 echo-v2
 ```
 
-#### 清场
+#### 清理
 
 ```shell
 kubectl delete -k .

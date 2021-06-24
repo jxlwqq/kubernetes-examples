@@ -269,7 +269,7 @@ k8s-2   Ready    <none>                 48m   v1.21.0   192.168.205.11   <none> 
 k8s-3   Ready    <none>                 37m   v1.21.0   192.168.205.12   <none>        Ubuntu 18.04.5 LTS   4.15.0-142-generic   docker://20.10.6
 ```
 
-### 清场
+### 清理
 
 销毁虚拟机：
 

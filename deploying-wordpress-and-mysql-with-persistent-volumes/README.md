@@ -60,7 +60,7 @@ kubectl get pvc     # 查看 persistentVolumeClaim
 ![wordpress:hello-world](hello-world.png)
 
 
-#### 清场
+#### 清理
 
 ```shell
 kubectl delete -k .
