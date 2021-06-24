@@ -17,6 +17,14 @@ spec:
           image: jxlwqq/hello-flask:latest
           ports:
             - containerPort: 5000
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
 ---
 apiVersion: v1
 kind: Service
