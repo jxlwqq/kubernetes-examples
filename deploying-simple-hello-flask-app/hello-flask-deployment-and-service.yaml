@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-flask
+spec:
+  selector:
+    matchLabels:
+      name: hello-flask
+  template:
+    metadata:
+      name: hello-flask
+      labels:
+        name: hello-flask
+    spec:
+      containers:
+        - name: hello-flask
+          image: jxlwqq/hello-flask:latest
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-flask-svc
+spec:
+  selector:
+    name: hello-flask
+  ports:
+    - port: 80
+      targetPort: 5000
+
