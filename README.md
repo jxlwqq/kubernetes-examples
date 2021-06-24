@@ -15,7 +15,6 @@
 * [使用 Redis 部署 PHP 留言板应用程序](deploying-php-guestbook-application-with-redis)
 * [使用 MongoDB 部署 PHP 留言板应用程序](deploying-php-guestbook-application-with-mongodb)
 * [使用 Persistent Volumes 部署 WordPress 和 MySQL](deploying-wordpress-and-mysql-with-persistent-volumes)
-* [部署单节点 Elasticsearch 与 Kibana](deploying-simple-elasticsearch-and-kibana)
 * [使用 MongoDB 部署 Node.js 笔记应用程序](deploying-nodejs-note-application-with-mongodb)
 * [部署 Laravel Demo Web 应用](deploying-laravel-application)
 * [使用 MySQL 和 Redis 部署 Laravel 7 Demo Web 应用](deploying-laravel-7-with-mysql-and-redis)
