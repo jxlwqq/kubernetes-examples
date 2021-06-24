@@ -6,7 +6,7 @@
 
 本文以 canary-by-header 策略作为示例。实现以下场景：
 
-来自北京和上海的用户体验新版本的服务，而来自其他地区的用户继续使用老版本的服务。
+> 来自北京和上海的用户体验新版本的服务，而来自其他地区的用户继续使用老版本的服务。
 
 #### 前提条件：部署 nginx ingress
 
@@ -14,6 +14,14 @@
 cd ../ingress-nginx # 切换到 ingress-nginx 目录
 kubectl apply -f deploy.yaml
 ```
+
+#### 提前拉取 Docker 镜像
+
+```bash
+docker pull hashicorp/http-echo
+```
+
+http-echo 是一个非常小巧的，运行在内存中的 web 服务器，它呈现一个 HTML 页面，其中包含提供给它的参数的内容。这对于测试或演示“hello world”程序特别有用。
 
 #### 部署 v1 版本的 echo 服务
 
@@ -145,7 +153,7 @@ spec:
 执行以下命令，进行访问验证：
 
 ```shell
-curl -H "Host: canary.example.com" 127.0.0.1 # 返回：echo-v1
+curl -H "Host: canary.example.com" 127.0.0.1   # 返回：echo-v1
 ```
 
 #### 基于 Header 的流量切分，创建 Canary Ingress，指定 v2 版本的 echo 服务
@@ -186,10 +194,10 @@ spec:
 
 ```shell
 curl -H "Host: canary.example.com" 127.0.0.1 # 返回：echo-v1
-curl -H "Host: canary.example.com" -H "Region: shanghai" 127.0.0.1 # 返回：echo-v2
-curl -H "Host: canary.example.com" -H "Region: beijing" 127.0.0.1 # 返回：echo-v2
-curl -H "Host: canary.example.com" -H "Region: shenzhen" 127.0.0.1 # 返回：echo-v1
-curl -H "Host: canary.example.com" -H "Region: guangzhou" 127.0.0.1 # 返回：echo-v1
+curl -H "Host: canary.example.com" -H "Region: shanghai" 127.0.0.1   # 返回：echo-v2
+curl -H "Host: canary.example.com" -H "Region: beijing" 127.0.0.1    # 返回：echo-v2
+curl -H "Host: canary.example.com" -H "Region: shenzhen" 127.0.0.1   # 返回：echo-v1
+curl -H "Host: canary.example.com" -H "Region: guangzhou" 127.0.0.1  # 返回：echo-v1
 ```
 
 
