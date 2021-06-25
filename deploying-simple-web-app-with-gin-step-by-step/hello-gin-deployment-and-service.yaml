@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-gin
+spec:
+  selector:
+    matchLabels:
+      app: hello-gin
+  template:
+    metadata:
+      labels:
+        app: hello-gin
+    spec:
+      containers:
+      - name: hello-gin
+        image: jxlwqq/hello-gin:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-gin-svc
+spec:
+  selector:
+    app: hello-gin
+  ports:
+    - port: 8080
+      targetPort: 8080

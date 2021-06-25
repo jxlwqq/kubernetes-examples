@@ -1,0 +1,3 @@
+resources:
+  - hello-gin-deployment-and-service.yaml
+  - ingress.yaml
