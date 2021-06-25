@@ -15,6 +15,7 @@ spec:
       containers:
         - name: php-fpm
           image: jxlwqq/php-info
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9000
           volumeMounts:

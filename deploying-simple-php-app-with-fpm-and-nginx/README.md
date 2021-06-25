@@ -49,7 +49,7 @@ docker pull jxlwqq/php-info
 php-info/Dockerfile 的代码：
 
 ```Dockerfile
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 WORKDIR /app
 COPY index.php /app
 ```
