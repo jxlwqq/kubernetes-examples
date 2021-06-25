@@ -382,8 +382,8 @@ spec: # 对象规约
 ingress.yaml 文件解读：
 
 ```yaml
+apiVersion: networking.k8s.io/v1
 kind: Ingress # 对象类型
-apiVersion: networking.k8s.io/v1beta1 # api 版本，这个资源对象还处于 beta 版本，但是已经很稳定了，k8s 社区还是比较谨慎的
 metadata: # 元数据
   name: laravel-ingress # 对象名称
   labels: # 标签
@@ -392,9 +392,13 @@ spec: # 对象规约
   rules:
     - http:
         paths:
-          - backend:
-              serviceName: laravel-service # 与 Laravel Service 对象的 metadata name 一致
-              servicePort: 80 # Service 端口，与 Laravel Service 对象的 port 一致
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: laravel-service # 与 Laravel Service 对象的 metadata name 一致
+                port:
+                  number: 80 # Service 端口，与 Laravel Service 对象的 port 一致
  ```
 
 ## 创建 Ingress-nginx 控制器

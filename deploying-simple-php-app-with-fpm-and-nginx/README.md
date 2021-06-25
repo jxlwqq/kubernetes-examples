@@ -161,17 +161,21 @@ spec:
 ingress.yaml 文件解读：
 
 ```yaml
-kind: Ingress # 对象类型
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: php-fpm-nginx
 spec:
   rules:
     - http:
         paths:
-          - backend:
-              serviceName: php-fpm-nginx # 流量转发到名为 php-fpm-nginx 的 Server 是那个
-              servicePort: 80 # 与 Service 的 port 一致
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: php-fpm-nginx
+                port:
+                  number: 80
 ```
 
 ## 自动伸缩
