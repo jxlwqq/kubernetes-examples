@@ -1,0 +1,3 @@
+resources:
+  - hello-express-deployment-and-service.yaml
+  - ingress.yaml
