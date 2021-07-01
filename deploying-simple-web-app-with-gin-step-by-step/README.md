@@ -27,7 +27,7 @@ go.mod 文件包含应用所需的依赖。
 应用的 Dockerfile 如下所示：
 
 ```dockerfile
-# 多阶段构建，减少镜像大小
+# 多阶段构建：提升构建速度，减少镜像大小
 
 # 从官方仓库中获取 1.16 的 Go 基础镜像
 FROM golang:1.16-alpine AS builder
