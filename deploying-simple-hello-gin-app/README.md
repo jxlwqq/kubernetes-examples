@@ -56,7 +56,15 @@ func main() {
 }
 ```
 
-go.mod 文件包含应用所需的依赖。
+go.mod 文件包含应用所需的依赖：
+
+```
+module hello-gin
+
+go 1.16
+
+require github.com/gin-gonic/gin v1.7.2 // indirect
+```
 
 ## Docker 镜像
 
@@ -112,7 +120,7 @@ kubectl apply -f ../ingress-ngin/deploy.yaml
 详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
 
 
-#### 部署 hello gin 应用
+## 部署 hello gin 应用
 
 执行以下命令：
 
@@ -188,7 +196,7 @@ spec: # 规约
 curl 127.0.0.1/hello # 返回 Hello, Gin!
 ```
 
-#### 清理
+## 清理
 ```shell
 kubectl delete -k .
 ```
