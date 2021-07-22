@@ -100,6 +100,7 @@ CMD ["./app"]
 
 ```shell
 docker build -f Dockerfile -t jxlwqq/hello-gin:latest . # 构建镜像
+docker login # 登录
 docker push jxlwqq/hello-gin:latest # 提交镜像
 ```
 
