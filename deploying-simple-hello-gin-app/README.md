@@ -114,10 +114,9 @@ kubectl apply -f ../ingress-ngin/deploy.yaml
 ```
 
 
-注：
-* deploy.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
+> 注： deploy.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
 
-详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
+> 详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
 
 
 ## 部署 hello gin 应用
