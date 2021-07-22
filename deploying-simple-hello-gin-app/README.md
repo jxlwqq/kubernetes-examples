@@ -97,6 +97,7 @@ CMD ["./app"]
 构建并提交镜像：
 
 > jxlwqq 是我的 Docker Hub 账号，这里需要换成你自己的账号。如果没有账号，需要先注册：https://hub.docker.com/signup
+
 > 这一步如果想跳过的话，暂时可以直接拉取我制作好的镜像：`docker pull jxlwqq/hello-gin:latest`
 
 ```shell
@@ -112,7 +113,7 @@ docker push jxlwqq/hello-gin:latest # 提交镜像
 这里我们选择 Ingress-nginx 控制器：
 
 ```bash
-kubectl apply -f ../ingress-ngin/deploy.yaml
+kubectl apply -f ../ingress-nginx/deploy.yaml
 ```
 
 
@@ -128,6 +129,13 @@ kubectl apply -f ../ingress-ngin/deploy.yaml
 ```shell
 kubectl apply -f hello-gin-deployment-and-service.yaml
 kubectl apply -f ingress.yaml
+```
+
+返回：
+```shell
+service/hello-gin-svc created
+deployment.apps/hello-gin created
+ingress.networking.k8s.io/hello-gin-ingress created
 ```
 
 `hello-gin-deployment-and-service.yaml` 文件解读：
