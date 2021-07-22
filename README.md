@@ -21,7 +21,7 @@
 * [使用 MySQL 和 Redis 部署 Laravel 7 Demo Web 应用](deploying-laravel-7-with-mysql-and-redis)
 * [使用 PHP-FPM 和 Nginx 部署一个简单的 phpinfo 应用](deploying-simple-php-app-with-fpm-and-nginx)
 * [部署一个简单的 Go Web 应用](deploying-hello-world-web-application-with-go)
-* [部署一个简单的 Gin 应用](deploying-simple-web-app-with-gin-step-by-step)  
+* [部署一个简单的 Gin 应用](deploying-simple-hello-gin-app)  
 * [部署一个简单的 Flask 应用](deploying-simple-hello-flask-app)
 * [部署一个简单的 Express 应用](deploying-simple-hello-express-app)
 * [使用蓝绿发布策略部署一个 echo 应用](deploying-simple-echo-app-using-blue-green-deployment)
