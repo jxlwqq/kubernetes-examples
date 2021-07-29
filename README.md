@@ -39,3 +39,7 @@
 #### Certified Kubernetes Administrator (CKA) 
 
 * [CKA training](cka-training)
+
+#### Istio
+
+* [快速安装](istio/0.installing.md)
