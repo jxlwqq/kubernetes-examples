@@ -2,8 +2,6 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: fruit-ingress
-  annotations:
-    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
@@ -22,3 +20,11 @@ spec:
                 name: banana-service
                 port:
                   number: 5678
+  ingressClassName: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+spec:
+  controller: k8s.io/ingress-nginx
