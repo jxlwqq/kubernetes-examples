@@ -1,0 +1,5 @@
+resources:
+  - configmap.yaml
+  - php-fpm-nginx-deployment-and-service.yaml
+  - horizontalpodautoscaler.yaml
+  - ingress.yaml

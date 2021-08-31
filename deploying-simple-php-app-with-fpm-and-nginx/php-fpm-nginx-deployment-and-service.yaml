@@ -45,7 +45,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: php-fpm-nginx
+  name: php-fpm-nginx-svc
 spec:
   selector:
     app: php-fpm-nginx
