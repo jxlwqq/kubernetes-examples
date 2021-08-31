@@ -8,6 +8,6 @@ kubectl apply -f deploy.yaml
 
 注：
 
-deploy.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/master/deploy/static/provider/cloud/deploy.yaml
+deploy.yaml 文件内容来源自：https://github.com/kubernetes/ingress-nginx/blob/main/deploy/static/provider/cloud/deploy.yaml
 
-详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/master/docs/deploy/index.md
+详细操作说明见：https://github.com/kubernetes/ingress-nginx/blob/main/docs/deploy/index.md
