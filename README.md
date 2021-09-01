@@ -1,6 +1,6 @@
 # kubernetes-examples
 
-[![Create cluster using KinD](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml/badge.svg)](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml)
+[![Testing](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml/badge.svg)](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml)
 
 <img src='./ingress.png' width='400'>
 

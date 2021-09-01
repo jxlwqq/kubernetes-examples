@@ -1,4 +1,4 @@
-name: "Create cluster using KinD"
+name: "Testing"
 on: [pull_request, push]
 
 jobs:
