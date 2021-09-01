@@ -1,0 +1,16 @@
+name: "Create cluster using KinD"
+on: [pull_request, push]
+
+jobs:
+  kind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Kind Cluster
+        uses: helm/kind-action@v1.2.0
+      - name: Apply
+        run: |
+          kubectl cluster-info
+          echo "current-context:" $(kubectl config current-context)
+          echo "environment-kubeconfig:" ${KUBECONFIG}
+          kubectl apply -k ./ingress-nginx
