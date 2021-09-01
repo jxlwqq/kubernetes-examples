@@ -18,7 +18,7 @@
 在等待 Kubernetes 的状态变成 running 的同时，我们可以手动拉取以下两个镜像，避免后续操作等待时间过长。
 
 ```bash
-docker pull k8s.gcr.io/ingress-nginx/controller@v0.47.0
+docker pull k8s.gcr.io/ingress-nginx/controller:v1.0.0
 docker pull hashicorp/http-echo
 ```
 
