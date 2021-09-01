@@ -118,7 +118,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo
+  name: echo-ingress
 spec:
   rules:
     - http:
@@ -130,6 +130,7 @@ spec:
                 name: echo-svc
                 port:
                   number: 5678
+  ingressClassName: nginx
 ```
 
 访问验证：

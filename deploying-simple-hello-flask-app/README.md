@@ -116,6 +116,7 @@ spec:
                 name: hello-flask-svc # service 名称
                 port:
                   number: 80 # 端口号
+  ingressClassName: nginx
 ```
 
 访问验证：

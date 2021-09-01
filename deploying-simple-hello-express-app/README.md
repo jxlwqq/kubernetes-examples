@@ -124,6 +124,7 @@ spec:
                 name: hello-express-svc # service 名称
                 port:
                   number: 3000 # 端口号
+  ingressClassName: nginx
 ```
 
 访问验证：

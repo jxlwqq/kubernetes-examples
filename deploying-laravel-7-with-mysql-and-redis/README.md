@@ -399,6 +399,7 @@ spec: # 对象规约
                 name: laravel-service # 与 Laravel Service 对象的 metadata name 一致
                 port:
                   number: 80 # Service 端口，与 Laravel Service 对象的 port 一致
+  ingressClassName: nginx # 指定 ingress Class
  ```
 
 ## 创建 Ingress-nginx 控制器

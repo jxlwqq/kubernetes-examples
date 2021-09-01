@@ -215,6 +215,7 @@ spec: # 规约
                 name: hello-gin-svc # service 名称
                 port:
                   number: 8080 # 端口号
+  ingressClassName: nginx
 ```
 
 访问验证：

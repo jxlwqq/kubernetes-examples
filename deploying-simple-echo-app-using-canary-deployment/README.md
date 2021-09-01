@@ -135,7 +135,7 @@ kubectl apply -f ingress-primary.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo
+  name: echo-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
@@ -150,6 +150,7 @@ spec:
                 name: echo-v1-svc
                 port:
                   number: 80
+  ingressClassName: nginx
 ```
 
 执行以下命令，进行访问验证：
@@ -172,9 +173,8 @@ kubectl apply -f ingress-canary-by-header.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-canary
+  name: echo-canary-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/canary: "true" # 支持金丝雀
     nginx.ingress.kubernetes.io/canary-by-header: "Region" # 基于请求头中的"Region"字段切分流量
     nginx.ingress.kubernetes.io/canary-by-header-pattern: "shanghai|beijing" #当请求头中的"Region"的值匹配"shanghai"或者"beijing"的时候切分流量
@@ -190,6 +190,7 @@ spec:
                 name: echo-v2-svc
                 port:
                   number: 80
+  ingressClassName: nginx
 ```
 
 执行以下命令，进行访问验证：

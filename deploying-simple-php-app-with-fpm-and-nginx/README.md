@@ -176,6 +176,7 @@ spec:
                 name: php-fpm-nginx
                 port:
                   number: 80
+  ingressClassName: nginx
 ```
 
 ## 自动伸缩
