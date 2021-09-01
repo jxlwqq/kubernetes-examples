@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: php-fpm-nginx
+  name: php-fpm-nginx-ingress
 spec:
   rules:
     - http:
@@ -14,10 +14,3 @@ spec:
                 port:
                   number: 80
   ingressClassName: nginx
----
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: nginx
-spec:
-  controller: k8s.io/ingress-nginx

@@ -13,3 +13,4 @@ spec:
                 name: wordpress-svc # 匹配 wordpress Service 的 name
                 port:
                   number: 80
+  ingressClassName: nginx
