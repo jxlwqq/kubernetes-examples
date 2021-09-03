@@ -1,10 +1,17 @@
 FROM golang:1.17-alpine AS builder
-WORKDIR /go/src/hello-gin
-ADD . /go/src/hello-gin
-RUN go get -d -v ./...
-RUN go build -o app .
 
-FROM alpine:latest
-COPY --from=builder /go/src/hello-gin/app .
+WORKDIR /workspace
+
+COPY go.mod go.mod
+COPY go.sum go.sum
+RUN go mod download
+
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o app main.go
+
+FROM gcr.io/distroless/static:nonroot
+WORKDIR /
+COPY --from=builder /workspace/app .
 EXPOSE 8080
-CMD ["./app"]
+ENTRYPOINT ["/app"]

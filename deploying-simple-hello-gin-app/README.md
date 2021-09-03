@@ -63,9 +63,10 @@ module hello-gin
 
 go 1.17
 
+require github.com/gin-gonic/gin v1.7.4
+
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.7.4 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.9.0 // indirect
@@ -93,23 +94,31 @@ require (
 
 # 从官方仓库中获取 1.17 的 Go 基础镜像
 FROM golang:1.17-alpine AS builder
-# 设置工作目录
-WORKDIR /go/src/hello-gin
-# 复制项目文件
-ADD . /go/src/hello-gin
-# 下载依赖
-RUN go get -d -v ./...
-# 构建名为"app"的二进制文件
-RUN go build -o app .
 
-# 获取轻型 Linux 发行版，大小仅有 5M 左右
-FROM alpine:latest
+# 设置工作目录
+WORKDIR /workspace
+
+# 安装项目依赖
+COPY go.mod go.mod
+COPY go.sum go.sum
+RUN go mod download
+
+# 复制项目文件
+COPY . .
+
+# 构建名为"app"的二进制文件
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o app main.go
+
+# 获取 Distroless 镜像，只有 650 kB 的大小，是常用的 alpine:latest 的 1/4
+FROM gcr.io/distroless/static:nonroot
+# 设置工作目录
+WORKDIR /
 # 将上一阶段构建好的二进制文件复制到本阶段中
-COPY --from=builder /go/src/hello-gin/app .
+COPY --from=builder /workspace/app .
 # 设置监听端口
 EXPOSE 8080
 # 配置启动命令
-CMD ["./app"]
+ENTRYPOINT ["/app"]
 ```
 
 构建并提交镜像：
