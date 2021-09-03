@@ -12,14 +12,13 @@ jobs:
         run: |
           kubectl cluster-info
           echo "current-context:" $(kubectl config current-context)
-          echo "environment-kubeconfig:" ${KUBECONFIG}
           kubectl apply -k ./ingress-nginx
           kubectl rollout status deployments.apps ingress-nginx-controller --namespace=ingress-nginx
+          kubectl get service ingress-nginx-controller --namespace=ingress-nginx
       - name: Deploying simple apple and banana ingress
         run: |
           kubectl apply -k ./deploying-simple-apple-and-banana-ingress
           kubectl rollout status deployments.apps apple-deployment
           kubectl rollout status deployments.apps banana-deployment
-
 
 
