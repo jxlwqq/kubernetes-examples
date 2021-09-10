@@ -50,3 +50,4 @@
 
 * [memcached-operator](https://github.com/jxlwqq/memcached-operator)
 * [cnat-operator](https://github.com/jxlwqq/cnat-operator)
+* [visitors-operator](https://github.com/jxlwqq/visitors-operator)
