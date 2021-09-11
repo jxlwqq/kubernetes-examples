@@ -51,5 +51,6 @@
 
 * [memcached-operator](https://github.com/jxlwqq/memcached-operator)
 * [cnat-operator](https://github.com/jxlwqq/cnat-operator)
+* [hello-operator](https://github.com/jxlwqq/hello-operator)
 * [visitors-operator](https://github.com/jxlwqq/visitors-operator)
 * [wordpress-operator](https://github.com/jxlwqq/wordpress-operator)
