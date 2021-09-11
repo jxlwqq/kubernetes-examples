@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: default
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: brendanburns/journal-server:latest
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: JOURNAL_ENTRIES
+              valueFrom:
+                configMapKeyRef:
+                  key: journalEntries
+                  name: frontend-config
+          volumeMounts:
+            - name: passwd-volume
+              mountPath: /etc/redis-passwd
+              readOnly: true
+      volumes:
+        - name: passwd-volume
+          secret:
+            secretName: redis-passwd

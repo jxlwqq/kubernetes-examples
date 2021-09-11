@@ -1,0 +1,11 @@
+resources:
+  - frontend/configmap.yaml
+  - frontend/deployment.yaml
+  - frontend/service.yaml
+  - redis/configmap.yaml
+  - redis/secret.yaml
+  - redis/statefulset.yaml
+  - redis/service.yaml
+  - fileserver/deployment.yaml
+  - fileserver/service.yaml
+  - ingress.yaml
