@@ -19,6 +19,18 @@ spec:
         - name: fileserver
           image: nginx:latest
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "usr/sbin/nginx", "-s", "quit" ]
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       dnsPolicy: ClusterFirst

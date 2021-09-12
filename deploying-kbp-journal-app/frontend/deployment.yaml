@@ -19,6 +19,14 @@ spec:
         - name: frontend
           image: brendanburns/journal-server:latest
           imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /api
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /api
           env:
             - name: JOURNAL_ENTRIES
               valueFrom:
