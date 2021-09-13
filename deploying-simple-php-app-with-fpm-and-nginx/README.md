@@ -129,6 +129,12 @@ spec: # Deployment 对象规约
             postStart: # 当容器处于 postStart 阶段时，执行一下命令
               exec:
                 command: ["/bin/sh", "-c", "cp -r /app/. /var/www/html"] # 将 /app/index.php 复制到挂载的 volume 
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - '-c'
+                  - sleep 5 && kill -SIGQUIT 1 # 优雅退出
         - name: nginx # 第二个容器名称
           image: nginx # 容器镜像
           ports:
@@ -139,6 +145,13 @@ spec: # Deployment 对象规约
             - mountPath: /etc/nginx/nginx.conf #  挂载配置了 nginx.conf 的 volume
               subPath: nginx.conf
               name: nginx-config
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - sh
+                  - '-c'
+                  - sleep 5 && /usr/sbin/nginx -s quit # 优雅退出
       volumes:
         - name: nginx-www # 这个 volume 是 php-fpm 容器 和 nginx 容器所共享的，两个容器都 volumeMounts 了
           emptyDir: {}
