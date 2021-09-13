@@ -54,3 +54,4 @@
 * [hello-operator](https://github.com/jxlwqq/hello-operator)
 * [visitors-operator](https://github.com/jxlwqq/visitors-operator)
 * [wordpress-operator](https://github.com/jxlwqq/wordpress-operator)
+* [guestbook-operator](https://github.com/jxlwqq/guestbook-operator)
