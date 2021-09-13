@@ -45,7 +45,7 @@
 
 #### Istio
 
-* [快速安装](istio/0.installing.md)
+* [bookinfo](istio/0.installing.md)
 
 #### Operator
 
