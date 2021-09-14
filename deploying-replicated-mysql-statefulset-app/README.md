@@ -1,18 +1,15 @@
+# 运行一个有状态的 MySQL 服务
+
 原文：https://kubernetes.io/zh/docs/tasks/run-application/run-replicated-stateful-application/
+
+#### 镜像准备
 
 ```shell
 docker pull mysql:5.7
-# docker pull gcr.io/google-samples/xtrabackup:1.0 # 无法拉取该镜像的替代方法
-docker pull ist0ne/xtrabackup:1.0
-docker tag ist0ne/xtrabackup:1.0 gcr.io/google-samples/xtrabackup:1.0
-docker rmi ist0ne/xtrabackup:1.0
+docker pull gcr.io/google-samples/xtrabackup:1.0
 ```
 
-https://k8s.io/examples/application/mysql/mysql-configmap.yaml
-
-https://k8s.io/examples/application/mysql/mysql-services.yaml
-
-https://k8s.io/examples/application/mysql/mysql-statefulset.yaml
+#### 部署
 
 ```shell
 kubectl apply -f mysql.yaml
@@ -23,7 +20,9 @@ kubectl scale statefulset mysql --replicas=2
 kubectl scale statefulset mysql --replicas=3
 ```
 
-创建数据库
+#### 查询操作
+
+创建数据库：
 
 ```shell
 # 直连写入
@@ -35,7 +34,7 @@ INSERT INTO test.messages VALUES ('hello');
 EOF
 ```
 
-查询
+查询：
 
 ```shell
 # 通过 service 负载均衡查询
@@ -54,6 +53,8 @@ kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
 kubectl run mysql-client --image=mysql:5.7 -i -t --rm --restart=Never --\
   mysql -h mysql-0.mysql -e "SELECT * FROM test.messages"
 ```
+
+#### 清理
 
 ```shell
 kubectl delete -f .
