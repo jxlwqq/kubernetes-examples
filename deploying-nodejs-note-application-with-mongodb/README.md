@@ -25,3 +25,9 @@ kubectl apply -k ./
 #### 访问
 
 打开浏览器访问：`http://localhost`
+
+
+#### 清理
+```shell
+kubectl delete -k ./
+```
