@@ -1,5 +1,5 @@
 resources:
   - frontend-deployment-and-service.yaml
-  - redis-master-deployment-and-service.yaml
-  - redis-slave-deployment-and-service.yaml
+  - redis-leader-deployment-and-service.yaml
+  - redis-follower-deployment-and-service.yaml
   - ingress.yaml
