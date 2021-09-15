@@ -9,7 +9,8 @@
 
 #### 部署有状态 Redis 后端服务
 
-使用 StatefulSet 资源来部署 Redis 集群，使用卷说明来编写可复制的模版，为多副本中的每个 Pod 分配自己独有的 PV。集群中的 Leader 和 Follower 使用存储在 ConfigMap中启动脚本脚本区分角色。
+使用 StatefulSet 资源来部署 Redis 集群，使用卷说明来编写可复制的模版，为多副本中的每个 Pod 分配自己独有的 PV。集群中的 Leader 和 Follower 使用存储在 ConfigMap 中启动脚本区分角色。
+
 
 ```shell
 kubectl apply -f redis/.
