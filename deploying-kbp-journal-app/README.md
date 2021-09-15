@@ -11,7 +11,7 @@
 
 使用 StatefulSet 资源来部署 Redis 集群，使用卷说明来编写可复制的模版，为多副本中的每个 Pod 分配自己独有的 PV。集群中的 Leader 和 Follower 使用存储在 ConfigMap 中启动脚本区分角色。
 
-https://github.com/jxlwqq/kubernetes-examples/blob/fb1a662fbc8e96221d0bc721c93d2ce977f93022/deploying-kbp-journal-app/redis/configmap.yaml?plain=1#L1-L15
+https://github.com/jxlwqq/kubernetes-examples/blob/fb1a662fbc8e96221d0bc721c93d2ce977f93022/deploying-kbp-journal-app/redis/configmap.yaml#L1-L15
 
 ```shell
 kubectl apply -f redis/.
