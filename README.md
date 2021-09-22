@@ -30,7 +30,7 @@
 * [使用金丝雀发布策略部署一个 echo 应用](deploying-simple-echo-app-using-canary-deployment)
 * [部署一个基本的 StatefulSet 应用](deploying-basic-statefulset-app)
 * [部署一个 MySQL 集群 StatefulSet 应用](deploying-replicated-mysql-statefulset-app)
-* [部署 KBP 杂志应用](deploying-kbp-journal-app)
+* [部署 KBP 日志应用](deploying-kbp-journal-app)
 
 ---
 
