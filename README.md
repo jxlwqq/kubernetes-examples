@@ -6,7 +6,7 @@
 
 #### 说明
 
-* 所有示例均在 Docker for Mac 内置的 Kubernetes 的集群上部署，请下载或更新到 Docker for Mac [最新版本](https://docs.docker.com/docker-for-mac/release-notes/)。
+* 所有示例均在 Docker for Mac 内置的 Kubernetes 的集群上部署，请下载或更新到 Docker for Mac [最新版本](https://docs.docker.com/desktop/mac/release-notes/)。
 * 动手实验前，请先执行 `kubectl config current-content` 查看当前集群名称，确保切换到本地的 Kubernetes 集群。
 * 请勿用于生产环境。
 
