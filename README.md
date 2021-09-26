@@ -55,3 +55,7 @@
 * [visitors-operator](https://github.com/jxlwqq/visitors-operator)
 * [wordpress-operator](https://github.com/jxlwqq/wordpress-operator)
 * [guestbook-operator](https://github.com/jxlwqq/guestbook-operator)
+
+#### Learn From Source Code
+
+* [当你创建了一个Deployment时，Kubernetes内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-create-a-deployment.md)
