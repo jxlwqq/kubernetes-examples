@@ -1,4 +1,4 @@
-# 当你创建了一个Deployment时，Kubernetes内部发生了什么？
+# 当你创建了一个 Deployment 时，Kubernetes 内部发生了什么？
 
 
 我们通常使用 kubectl 来管理我们的 Kubernetes 集群。 当我们需要一个 Nginx 服务时，可以使用以下命令来创建：
@@ -27,8 +27,7 @@ deployment.apps/nginx created
 
 * **kube-scheduler**: 控制平面组件，负责监视新创建的、未指定运行节点（node）的 Pods，选择节点让 Pod 在上面运行。 调度决策考虑的因素包括单个 Pod 和 Pod 集合的资源需求、硬件/软件/策略约束、亲和性和反亲和性规范、数据位置、工作负载间的干扰和最后时限。
 
-* **kubelet**: 一个在集群中每个节点（node）上运行的代理。 它保证容器（containers）都运行在 Pod 中。 kubelet 接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。 
-
+* **kubelet**: 一个在集群中每个节点（node）上运行的代理。 它保证容器（containers）都运行在 Pod 中。 kubelet 接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。
 
 ### 简化的核心过程
 
@@ -52,7 +51,7 @@ deployment.apps/nginx created
 
 ### kubelet 创建 Pod 的过程
 
-Pod 的创建的过程大体上可以分为 4 个步骤：
+Pod 的创建的过程大体上可以分为 4 个步骤(实际上为7个，这里省略了前置的3个步骤)：
 
 1. 为 Pod 创建沙盒，即 pause 容器，它的主要作用是创建并共享 Network Namespace；
 
