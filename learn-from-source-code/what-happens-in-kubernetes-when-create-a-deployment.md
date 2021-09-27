@@ -37,7 +37,7 @@ deployment.apps/nginx created
 
 1. 用户通过 kubectl 向 kube-apiserver 发起一个创建 Deployment 对象的请求。
 
-2. kube-apiserver 在对上述请求进行认证（authn）、授权（authz）、准入（admission）、验证（validation）等一系列操作后，会创建一个 Deployment 对象。
+2. kube-apiserver 在对上述请求进行认证（authn）、授权（authz）、准入控制（admission control）、验证（validation）等一系列操作后，会创建一个 Deployment 对象。
 
 3. 上述的 Deployment 创建事件，会被 DeploymentController 通过其内部的 DeploymentInformer 监听到，然后根据 DeploymentController 内部设定的逻辑，它将会创建一个 ReplicaSet 对象。[源码 syncDeployment](https://github.com/kubernetes/kubernetes/blob/2c0e4a232a3c10a9083012ec28a3622bd4e4be90/pkg/controller/deployment/deployment_controller.go#L566)
 
@@ -51,11 +51,11 @@ deployment.apps/nginx created
 
 ### kubelet 创建 Pod 的过程
 
-Pod 的创建的过程大体上可以分为 4 个步骤（实际上为 7 步，这里省略了前置的 3 个步骤[源码 SyncPod](https://github.com/kubernetes/kubernetes/blob/0b4a793da2a2912393687367e0af2436612a9b8e/pkg/kubelet/kuberuntime/kuberuntime_manager.go#L726)）：
+Pod 的创建的过程大体上可以分为 4 个步骤（实际上为 7 步，这里省略了前置的 3 个步骤。[源码 SyncPod](https://github.com/kubernetes/kubernetes/blob/0b4a793da2a2912393687367e0af2436612a9b8e/pkg/kubelet/kuberuntime/kuberuntime_manager.go#L726)）：
 
 1. 为 Pod 创建沙盒，即基础设施容器 Infrastructure Container（镜像名称为 k8s.gcr.io/pause），它的主要作用是创建并共享进程命名空间。
 
-2. 创建 Pod 规格中指定的临时容器 Ephemeral Containers (Alpha 功能，默认不开启)，临时容器是一种特殊的容器，该容器在现有 Pod 中临时运行，以便完成用户发起的操作，例如故障排查。 你可以使用临时容器来检查服务，而不是用它来构建应用程序。
+2. 创建 Pod 规格中指定的临时容器 Ephemeral Containers（Alpha 功能，默认不开启），临时容器是一种特殊的容器，该容器在现有 Pod 中临时运行，以便完成用户发起的操作，例如故障排查。 你可以使用临时容器来检查服务，而不是用它来构建应用程序。
 
 3. 创建 Pod 规格中指定的初始化容器 Init Containers，初始化容器是一种特殊容器，在 Pod 内的应用容器启动之前运行。Init 容器可以包括一些应用镜像中不存在的实用工具和安装脚本。
 
