@@ -58,4 +58,4 @@
 
 #### Learn From Source Code
 
-* [当你创建了一个Deployment时，Kubernetes内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-create-a-deployment.md)
+* [当你创建了一个 Deployment 时，Kubernetes 内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-create-a-deployment.md)

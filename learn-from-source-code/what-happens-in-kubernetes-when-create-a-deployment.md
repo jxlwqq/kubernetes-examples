@@ -37,7 +37,7 @@ deployment.apps/nginx created
 
 1. 用户通过 kubectl 向 kube-apiserver 发起一个创建 Deployment 对象的请求。
 
-2. kube-apiserver 在对上述请求进行认证（authn）、授权（authz）、准入控制（admission control）、验证（validation）等一系列操作后，会创建一个 Deployment 对象。
+2. kube-apiserver 在对上述请求进行认证（Authentication）、鉴权（Authorization）、准入控制（Admission control）等一系列操作后，会创建一个 Deployment 对象。
 
 3. 上述的 Deployment 创建事件，会被 DeploymentController 通过其内部的 DeploymentInformer 监听到，然后根据 DeploymentController 内部设定的逻辑，它将会创建一个 ReplicaSet 对象。[源码 syncDeployment](https://github.com/kubernetes/kubernetes/blob/2c0e4a232a3c10a9083012ec28a3622bd4e4be90/pkg/controller/deployment/deployment_controller.go#L566)
 
