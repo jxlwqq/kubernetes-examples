@@ -41,7 +41,10 @@
 
 #### Certified Kubernetes Administrator (CKA) 
 
-* [CKA training](cka-training)
+* [考试技巧](./cka-training/0.tips.md)
+* [安装](./cka-training/1.installing.md)
+* [Pod](./cka-training/2.pod.md)
+* [故障排查](./cka-training/8.troubleshooting.md)
 
 #### Istio
 
