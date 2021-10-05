@@ -48,16 +48,16 @@
 
 #### Istio
 
-* [bookinfo](istio/0.installing.md)
+* [bookinfo](istio/0.installing.md)：官方示例
 
 #### Operator
 
-* [memcached-operator](https://github.com/jxlwqq/memcached-operator)
-* [cnat-operator](https://github.com/jxlwqq/cnat-operator)
-* [hello-operator](https://github.com/jxlwqq/hello-operator)
-* [visitors-operator](https://github.com/jxlwqq/visitors-operator)
-* [wordpress-operator](https://github.com/jxlwqq/wordpress-operator)
-* [guestbook-operator](https://github.com/jxlwqq/guestbook-operator)
+* [memcached-operator](https://github.com/jxlwqq/memcached-operator)：源于 Operator Framework 官方示例
+* [cnat-operator](https://github.com/jxlwqq/cnat-operator)：源于《Kubernetes 编程》示例
+* [hello-operator](https://github.com/jxlwqq/hello-operator)：源于 Hello Kubernetes 示例
+* [visitors-operator](https://github.com/jxlwqq/visitors-operator)：源于《Kubernetes 操作器》示例
+* [wordpress-operator](https://github.com/jxlwqq/wordpress-operator)：源于 Kubernetes 官方文档示例 Wordpress
+* [guestbook-operator](https://github.com/jxlwqq/guestbook-operator)：源于 Kubernetes 官方文档示例 Guestbook
 
 #### Learn From Source Code
 
