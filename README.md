@@ -31,6 +31,7 @@
 * [部署一个基本的 StatefulSet 应用](deploying-basic-statefulset-app)
 * [部署一个 MySQL 集群 StatefulSet 应用](deploying-replicated-mysql-statefulset-app)
 * [部署 KBP 日志应用](deploying-kbp-journal-app)
+* [部署一个简单的加减乘除计算器微服务](deploying-simple-microservice-using-gin-and-grpc)
 
 ---
 
