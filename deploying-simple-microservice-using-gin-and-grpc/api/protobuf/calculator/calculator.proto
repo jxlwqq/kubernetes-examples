@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "github.com/jxlwqq/calculation-service/pb";
+
+service calculator {
+  rpc add(request) returns (response) {}
+  rpc subtract(request) returns (response) {}
+  rpc multiply(request) returns (response) {}
+  rpc divide(request) returns (response) {}
+}
+
+
+message request {
+  float x = 1;
+  float y = 2;
+}
+
+message response {
+  float res = 1;
+  string err = 2;
+}

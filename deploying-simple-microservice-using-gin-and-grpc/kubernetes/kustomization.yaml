@@ -1,0 +1,4 @@
+resources:
+  - api-server.yaml
+  - calculator.yaml
+  - ingress.yaml
