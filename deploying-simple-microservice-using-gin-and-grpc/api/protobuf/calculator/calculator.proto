@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package calculator;
 
-option go_package = "github.com/jxlwqq/calculation-service/pb";
+option go_package = "./api/protobuf/calculator;pb";
 
 service calculator {
   rpc add(request) returns (response) {}
