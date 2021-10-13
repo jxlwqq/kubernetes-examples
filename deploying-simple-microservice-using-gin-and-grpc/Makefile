@@ -21,8 +21,8 @@ proto:
 
 .PHONY: docker-build
 docker-build:
-	docker build -t jxlwqq/api-server -f api-server.Dockerfile .
-	docker build -t jxlwqq/calculator -f calculator.Dockerfile .
+	docker build -t jxlwqq/api-server -f cmd/api-server/Dockerfile .
+	docker build -t jxlwqq/calculator -f cmd/calculator/Dockerfile .
 
 .PHONY: kube-deploy
 kube-deploy:
