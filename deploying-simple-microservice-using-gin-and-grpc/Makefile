@@ -26,11 +26,11 @@ docker-build:
 
 .PHONY: kube-deploy
 kube-deploy:
-	kubectl apply -k ./kubernetes
+	kubectl apply -k ./kubernetes-manifests
 
 .PHONY: kube-undeploy
 kube-undeploy:
-	kubectl delete -k ./kubernetes
+	kubectl delete -k ./kubernetes-manifests
 
 .PHONY: kube-redeploy
 kube-redeploy:
