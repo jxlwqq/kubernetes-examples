@@ -2,9 +2,8 @@ package main
 
 import (
 	"context"
-	"errors"
 	"github.com/gin-gonic/gin"
-	pb "github.com/jxlwqq/route-guide/api/protobuf/calculator"
+	calculatorv1 "github.com/jxlwqq/route-guide/api/protobuf/calculator"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"log"
@@ -102,44 +101,32 @@ func Add(c *gin.Context) {
 	})
 }
 
-func calculate(x float32, operator string, y float32) (float32, error) {
+func calculate(x float32, operator string, y float32) (float32, string) {
 	conn, err := grpc.Dial(address+PORT, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := pb.NewCalculatorClient(conn)
+	c := calculatorv1.NewCalculatorClient(conn)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	req := &pb.Request{X: x, Y: y}
+	req := &calculatorv1.Request{X: x, Y: y}
 
 	switch operator {
 	case "+":
 		resp, _ := c.Add(ctx, req)
-		if resp.Err != "" {
-			return 0, errors.New(resp.Err)
-		}
-		return resp.Res, nil
+		return resp.Res, resp.Err
 	case "-":
 		resp, _ := c.Subtract(ctx, req)
-		if resp.Err != "" {
-			return 0, errors.New(resp.Err)
-		}
-		return resp.Res, nil
+		return resp.Res, resp.Err
 	case "*":
 		resp, _ := c.Multiply(ctx, req)
-		if resp.Err != "" {
-			return 0, errors.New(resp.Err)
-		}
-		return resp.Res, nil
+		return resp.Res, resp.Err
 	case "/":
 		resp, _ := c.Divide(ctx, req)
-		if resp.Err != "" {
-			return 0, errors.New(resp.Err)
-		}
-		return resp.Res, nil
+		return resp.Res, resp.Err
 	}
 
-	return 0, nil
+	return 0, ""
 }
