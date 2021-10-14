@@ -31,3 +31,8 @@ kube-deploy:
 .PHONY: kube-undeploy
 kube-undeploy:
 	kubectl delete -k ./kubernetes
+
+.PHONY: kube-redeploy
+kube-redeploy:
+	make kube-undeploy
+	make kube-deploy
