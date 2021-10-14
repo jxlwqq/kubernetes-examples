@@ -25,11 +25,11 @@ spec:
           readinessProbe:
             httpGet:
               port: 8080
-              path: /add/1/1
+              path: /healthz
           livenessProbe:
             httpGet:
               port: 8080
-              path: /add/1/1
+              path: /healthz
 ---
 apiVersion: v1
 kind: Service

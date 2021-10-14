@@ -32,6 +32,7 @@ func main() {
 	r.GET("/subtract/:x/:y", Subtract)
 	r.GET("/multiply/:x/:y", Multiply)
 	r.GET("/divide/:x/:y", Divide)
+	r.GET("/healthz", Headlthz)
 
 	server := &http.Server{
 		Addr:    ":8080",
@@ -55,6 +56,10 @@ func main() {
 		log.Fatalf("server forced to shutdown: %v", err)
 	}
 	log.Println("server is exiting")
+}
+
+func Headlthz(c *gin.Context) {
+	c.Status(http.StatusOK)
 }
 
 func Multiply(c *gin.Context) {
