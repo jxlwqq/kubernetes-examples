@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package calculator;
+package grpc.calculator.v1;
 
-option go_package = "./api/protobuf/calculator;pb";
+option go_package = "./api/protobuf/calculator;grpc_calculator_v1";
 
 service calculator {
   rpc add(request) returns (response) {}

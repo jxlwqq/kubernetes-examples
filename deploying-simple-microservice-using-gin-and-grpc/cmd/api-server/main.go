@@ -103,7 +103,7 @@ func Add(c *gin.Context) {
 }
 
 func calculate(x float32, operator string, y float32) (float32, error) {
-	conn, err := grpc.Dial(address + PORT, grpc.WithInsecure(), grpc.WithBlock())
+	conn, err := grpc.Dial(address+PORT, grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		log.Fatalf("did not connect: %v", err)
 	}
