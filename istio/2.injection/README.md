@@ -36,10 +36,12 @@ istio-sidecar-injector   4          23h
 ```shell
 # 由于 default 命令空间已经被设置为自动注入，所以我们需要新建一个命名空间，试验手动注入
 kubectl create namespace tutorial
-# 新建一个 nginx.yaml
+# 新建一个 nginx Deployment
 kubectl create deployment nginx --image=nginx --dry-run=client --output=yaml > nginx.yaml
 kubectl apply -f nginx.yaml -n tutorial
 # 手动注入
 istioctl kube-inject -f nginx.yaml > nginx-injection.yaml
 kubectl apply -f nginx-injection.yaml -n tutorial
+# 比较差异
+diff nginx.yaml nginx-injection.yaml
 ```
