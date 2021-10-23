@@ -49,7 +49,9 @@
 
 #### Istio
 
-* [bookinfo](istio/0.installing.md)：官方示例
+* [安装](istio/0.installing/README.md)
+* [配置](istio/1.profile/README.md)
+* [注入](istio/2.injection/README.md)
 
 #### Operator
 
