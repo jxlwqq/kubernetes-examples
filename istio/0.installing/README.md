@@ -3,8 +3,8 @@
 #### 前提
 
 * 启动 Docker For Mac，并开启 Kubernetes 功能；
-* 如果 istio 相关组件在集群中无法正常运行，需要在 Docker 首选项的 Advanced 面板下增加 Docker 的 CPU 和内存限制；
-* 提前拉取容器镜像
+* 如果 Istio 相关组件在集群中无法正常运行，需要在 Docker 首选项的 Advanced 面板下增加 Docker 的 CPU 和内存限制；
+* (可选)提前拉取容器镜像，提升 Pod 启动速度：
 
 ```shell
 # 核心组件
@@ -68,3 +68,7 @@ istioctl dashboard kiali
 
 * [Istio 文档：平台安装 Docker Desktop](https://istio.io/latest/zh/docs/setup/platform-setup/docker/)
 * [Istio 文档：入门](https://istio.io/latest/zh/docs/setup/getting-started/)
+* [什么是微服务？](https://www.redhat.com/zh/topics/microservices/what-are-microservices)
+* [什么是服务网格？](https://www.redhat.com/zh/topics/microservices/what-is-a-service-mesh)
+* [什么是 Istio？](https://www.redhat.com/zh/topics/microservices/what-is-istio)
+* [什么是 Jaeger？原理，用途，组件及相关术语盘点](https://www.redhat.com/zh/topics/microservices/what-is-jaeger)
