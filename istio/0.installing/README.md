@@ -64,6 +64,15 @@ while true; do curl http://127.0.0.1/productpage; done
 istioctl dashboard kiali
 ```
 
+### 清理 bookinfo
+
+```shell
+kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl delete -f samples/bookinfo/networking/bookinfo-gateway.yaml
+```
+
+Istio 的组件和插件暂时不要清理。后续实验需要接着用。
+
 #### 参考：
 
 * [Istio 文档：平台安装 Docker Desktop](https://istio.io/latest/zh/docs/setup/platform-setup/docker/)
