@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: echo-gateway
+spec:
+  selector:
+    istio: ingressgateway # 使用 istio 默认的控制器
+  servers:
+    - hosts:
+        - "*"
+      port:
+        number: 80
+        name: http
+        protocol: HTTP

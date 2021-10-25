@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: echo-virtual-service
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - echo-gateway
+  http:
+    - route:
+        - destination:
+            host: echo-v1
+            port:
+              number: 5678
+          weight: 80
+        - destination:
+            host: echo-v2
+            port:
+              number: 5678
+          weight: 20
