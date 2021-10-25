@@ -45,3 +45,9 @@ kubectl apply -f nginx-injection.yaml -n tutorial
 # 比较差异
 diff nginx.yaml nginx-injection.yaml
 ```
+
+对比两个文件差异，可以看出一些核心变化：
+
+* 新增了一个名为 `istio-init` 的初始化容器
+* 新增了一个名为 `istio-proxy` 的边车容器
+* 原来的 nginx 容器上增加了一些启动参数和环境变量
