@@ -27,6 +27,10 @@ docker pull docker.io/istio/examples-bookinfo-productpage-v1
 
 #### 最小步骤
 
+
+> ⚠️  Apple chip 用户注意，需要 patch 下 istio-egressgateway 和 istio-ingressgateway 这两个 Deployment 资源，它们的默认节点亲和性只有 `amd64`，需要手动新增 `arm64` 这个值，否则 Pod 将一直处于 Pending 状态。[详见](https://github.com/envoyproxy/envoy/issues/16482)
+
+
 一共分为 9 个步骤，如下所示：
 
 ```shell
