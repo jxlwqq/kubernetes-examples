@@ -1,0 +1,7 @@
+resources:
+  - httpd-deployment.yaml
+  - httpd-service.yaml
+  - nginx-deployment.yaml
+  - nginx-service.yaml
+  - istio-gateway.yaml
+  - istio-virtual-service.yaml

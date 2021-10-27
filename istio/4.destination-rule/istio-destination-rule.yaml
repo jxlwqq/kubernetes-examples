@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: web-destination-rule
+spec:
+  host: web
+  subsets:
+    - name: httpd
+      labels:
+        app: httpd
+    - name: nginx
+      labels:
+        app: nginx

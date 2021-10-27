@@ -52,7 +52,8 @@
 * [安装](istio/0.installing)
 * [配置](istio/1.profile)
 * [注入](istio/2.injection)
-* [流量管理](istio/3.traffic-management)
+* [虚拟服务](istio/3.virtual-service)
+* [目标规则](istio/4.destination-rule)
 
 #### Operator
 
