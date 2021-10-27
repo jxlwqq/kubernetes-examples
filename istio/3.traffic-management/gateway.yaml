@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: echo-gateway
+  name: http-gateway
 spec:
   selector:
     istio: ingressgateway # 使用 istio 默认的控制器

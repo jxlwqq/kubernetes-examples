@@ -52,6 +52,7 @@
 * [安装](istio/0.installing)
 * [配置](istio/1.profile)
 * [注入](istio/2.injection)
+* [流量管理](istio/3.traffic-management)
 
 #### Operator
 

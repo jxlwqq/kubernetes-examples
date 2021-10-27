@@ -1,35 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: echo-v2
+  name: httpd
   labels:
-    app: echo-v2
+    app: httpd
 spec:
   selector:
     matchLabels:
-      app: echo-v2
+      app: httpd
   template:
     metadata:
       labels:
-        app: echo-v2
+        app: httpd
     spec:
       containers:
-        - name: echo-v2
-          image: hashicorp/http-echo
+        - name: httpd
+          image: httpd
           imagePullPolicy: IfNotPresent
-          args:
-            - "-text=echo-v2"
           ports:
-            - containerPort: 5678
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: echo-v2
+  name: httpd
   labels:
-    app: echo-v2
+    app: httpd
 spec:
   selector:
-    app: echo-v2
+    app: httpd
   ports:
-    - port: 5678
+    - port: 80

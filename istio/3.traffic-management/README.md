@@ -2,13 +2,13 @@
 
 ### Demo 介绍
 
-基于 hashicorp/http-echo 镜像，我们部署两个简单的 Web 服务。访问它们时，分别返回 `echo-v1` 和 `echo-v2`。
+基于 `nginx` 和 `httpd` 镜像，我们部署两个简单的 Web 服务。访问它们时，分别返回 `Welcome to nginx!` 和 `It works!` 两个经典的欢迎页面。
 
 ### 部署
 
 ```shell
-kubectl apply -f echo-v1.yaml # 包含 deployment 和 service
-kubectl apply -f echo-v2.yaml # 包含 deployment 和 service
+kubectl apply -f nginx.yaml # 包含 deployment 和 service
+kubectl apply -f httpd.yaml # 包含 deployment 和 service
 kubectl apply -f gateway.yaml # istio 网关
 kubectl apply -f virtual-service.yaml # istio 虚拟服务
 ```
@@ -16,14 +16,14 @@ kubectl apply -f virtual-service.yaml # istio 虚拟服务
 ### 访问
 
 ```shell
-curl http://localhost # 返回的 echo-v1 与 echo-v2 大致的比例是 4:1
+curl http://localhost # 返回的 nginx 与 httpd 大致的比例是 4:1
 ```
 
 ### 清理
 
 ```shell
-kubectl delete -f echo-v1.yaml
-kubectl delete -f echo-v2.yaml
+kubectl delete -f nginx.yaml
+kubectl delete -f httpd.yaml
 kubectl delete -f gateway.yaml
 kubectl delete -f virtual-service.yaml
 ```
