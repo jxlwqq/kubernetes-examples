@@ -1,7 +1,7 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: banana-deployment
+  name: banana
 spec:
   selector:
     matchLabels:
@@ -14,20 +14,21 @@ spec:
     spec:
       containers:
         - name: banana
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=banana"
+            - "--text=banana"
           ports:
-            - containerPort: 5678
+            - containerPort: 8080
 
 ---
 
 kind: Service
 apiVersion: v1
 metadata:
-  name: banana-service
+  name: banana-svc
 spec:
   selector:
     app: banana
   ports:
-    - port: 5678
+    - port: 8080
+      targetPort: 8080

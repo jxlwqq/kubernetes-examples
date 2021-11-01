@@ -19,7 +19,7 @@
 
 ```bash
 docker pull k8s.gcr.io/ingress-nginx/controller:v1.0.0
-docker pull hashicorp/http-echo
+docker pull jxlwqq/http-echo
 ```
 
 #### 本地端口准备
@@ -39,8 +39,7 @@ kubectl config use-context docker-desktop
 这里我们选择 ingress-nginx
 
 ```bash
-cd ../ingress-nginx # 切换到 ingress-nginx 目录
-kubectl apply -f deploy.yaml
+kubectl apply -f ../ingress-nginx/deploy.yaml
 ```
 
 注：deploy.yaml 文件来源自：https://github.com/kubernetes/ingress-nginx/blob/main/deploy/static/provider/cloud/deploy.yaml
