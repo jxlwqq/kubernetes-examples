@@ -18,7 +18,7 @@ jobs:
       - name: Deploying simple apple and banana ingress
         run: |
           kubectl apply -k ./deploying-simple-apple-and-banana-ingress
-          kubectl rollout status deployments.apps apple-deployment
-          kubectl rollout status deployments.apps banana-deployment
+          kubectl rollout status deployments.apps apple
+          kubectl rollout status deployments.apps banana
 
 
