@@ -10,12 +10,12 @@ spec:
   http:
     - route:
         - destination:
-            host: nginx
+            host: echo-v1
             port:
-              number: 80
-          weight: 80
+              number: 8080
+          weight: 90
         - destination:
-            host: httpd
+            host: echo-v2
             port:
-              number: 80
-          weight: 20
+              number: 8080
+          weight: 10
