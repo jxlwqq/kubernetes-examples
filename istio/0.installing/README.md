@@ -52,8 +52,10 @@ curl http://127.0.0.1/productpage
 
 > ⚠️  Apple chip 用户注意，需要 patch 下 istio-egressgateway 和 istio-ingressgateway 这两个 Deployment 资源，它们的默认节点亲和性只有 `amd64`，需要手动新增 `arm64` 这个值，否则 Pod 将一直处于 Pending 状态。[详见](https://github.com/istio/istio/issues/21094)
 
-执行以下 patch 操作，可临时解决节点亲和性导致的问题：
+arm64 架构的用户暂时可执行以下 patch 操作，可临时解决节点亲和性导致的问题：
 ```shell
+# 更新 istio-egressgateway 和 istio-ingressgateway 资源
+# amd64 用户请忽略
 kubectl patch deployments.apps \
   istio-ingressgateway \
   --namespace istio-system \
