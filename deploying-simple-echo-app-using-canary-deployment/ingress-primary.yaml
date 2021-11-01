@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-ingress
+  name: echo-ing
 spec:
   rules:
     - host: canary.example.com

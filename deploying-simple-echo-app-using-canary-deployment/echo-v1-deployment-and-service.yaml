@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v1"
+            - "--text=echo-v1"
           ports:
-            - containerPort: 5678
+            - containerPort: 8080
 
 ---
 apiVersion: v1
@@ -32,7 +32,7 @@ spec:
     version: v1
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080
 
 
 

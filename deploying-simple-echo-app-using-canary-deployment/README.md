@@ -20,7 +20,7 @@ kubectl apply -f deploy.yaml
 #### 提前拉取 Docker 镜像
 
 ```bash
-docker pull hashicorp/http-echo
+docker pull jxlwqq/http-echo
 ```
 
 http-echo 是一个非常小巧的，运行在内存中的 web 服务器，它呈现一个 HTML 页面，其中包含提供给它的参数的内容。这对于测试或演示“hello world”程序特别有用。
@@ -53,11 +53,11 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v1" # 响应请求，返回"echo-v1"
+            - "--text=echo-v1" # 响应请求，返回"echo-v1"
           ports:
-            - containerPort: 5678 # 容器端口号
+            - containerPort: 8080 # 容器端口号
 
 ---
 apiVersion: v1
@@ -70,7 +70,7 @@ spec:
     version: v1
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080
 ```
 
 #### 部署 v2 版本的 echo 服务
@@ -101,11 +101,11 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v2" # 响应请求，返回"echo-v2"
+            - "--text=echo-v2" # 响应请求，返回"echo-v2"
           ports:
-            - containerPort: 5678 # 容器端口号
+            - containerPort: 8080 # 容器端口号
 
 ---
 apiVersion: v1
@@ -118,7 +118,7 @@ spec:
     version: v2
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080
 ```
 
 #### 创建 Ingress，对外暴露服务，指向 v1 版本的 echo 服务
@@ -135,7 +135,7 @@ kubectl apply -f ingress-primary.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-ingress
+  name: echo-ing
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
@@ -173,7 +173,7 @@ kubectl apply -f ingress-canary-by-header.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-canary-ingress
+  name: echo-canary-ing
   annotations:
     nginx.ingress.kubernetes.io/canary: "true" # 支持金丝雀
     nginx.ingress.kubernetes.io/canary-by-header: "Region" # 基于请求头中的"Region"字段切分流量
