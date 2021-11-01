@@ -27,10 +27,6 @@ docker pull docker.io/istio/examples-bookinfo-productpage-v1
 
 #### 最小步骤
 
-
-> ⚠️  Apple chip 用户注意，需要 patch 下 istio-egressgateway 和 istio-ingressgateway 这两个 Deployment 资源，它们的默认节点亲和性只有 `amd64`，需要手动新增 `arm64` 这个值，否则 Pod 将一直处于 Pending 状态。[详见](https://github.com/istio/istio/issues/21094)
-
-
 一共分为 9 个步骤，如下所示：
 
 ```shell
@@ -52,6 +48,29 @@ kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 kubectl apply -f samples/addons
 # 第9步：访问应用
 curl http://127.0.0.1/productpage
+```
+
+> ⚠️  Apple chip 用户注意，需要 patch 下 istio-egressgateway 和 istio-ingressgateway 这两个 Deployment 资源，它们的默认节点亲和性只有 `amd64`，需要手动新增 `arm64` 这个值，否则 Pod 将一直处于 Pending 状态。[详见](https://github.com/istio/istio/issues/21094)
+
+执行以下 patch 操作，可临时解决节点亲和性导致的问题：
+```shell
+kubectl patch deployments.apps \
+  istio-ingressgateway \
+  --namespace istio-system \
+  --type='json' \
+  -p='[
+  {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/preferredDuringSchedulingIgnoredDuringExecution/0/preference/matchExpressions/0/values", "value": [amd64,arm64]},
+  {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/requiredDuringSchedulingIgnoredDuringExecution/nodeSelectorTerms/0/matchExpressions/0/values", "value": [amd64,arm64,ppc64le,s390x]}
+  ]'
+  
+kubectl patch deployments.apps \
+  istio-egressgateway \
+  --namespace istio-system \
+  --type='json' \
+  -p='[
+  {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/preferredDuringSchedulingIgnoredDuringExecution/0/preference/matchExpressions/0/values", "value": [amd64,arm64]},
+  {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/requiredDuringSchedulingIgnoredDuringExecution/nodeSelectorTerms/0/matchExpressions/0/values", "value": [amd64,arm64,ppc64le,s390x]}
+  ]'
 ```
 
 ### 查看仪表板
