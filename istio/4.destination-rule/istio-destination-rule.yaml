@@ -1,13 +1,13 @@
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: web-destination-rule
+  name: echo-destination-rule
 spec:
-  host: web
+  host: echo-service
   subsets:
-    - name: httpd
+    - name: v1
       labels:
-        app: httpd
-    - name: nginx
+        version: v1
+    - name: v2
       labels:
-        app: nginx
+        version: v2

@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1beta1
 kind: Gateway
 metadata:
-  name: web-gateway
+  name: echo-gateway
 spec:
   selector:
     istio: ingressgateway

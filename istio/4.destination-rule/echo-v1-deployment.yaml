@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-v1
+  labels:
+    app: echo
+    version: v1
+spec:
+  selector:
+    matchLabels:
+      app: echo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: echo
+        version: v1
+    spec:
+      containers:
+        - name: echo
+          image: jxlwqq/http-echo
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          args:
+            - "--text=v1"

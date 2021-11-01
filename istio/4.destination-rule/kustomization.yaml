@@ -1,0 +1,7 @@
+resources:
+  - echo-v1-deployment.yaml
+  - echo-v2-deployment.yaml
+  - echo-service.yaml
+  - istio-gateway.yaml
+  - istio-virtual-service.yaml
+  - istio-destination-rule.yaml
