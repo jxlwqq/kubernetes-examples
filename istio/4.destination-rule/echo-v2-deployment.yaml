@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: echo-v2
   labels:
     app: echo
-  name: echo-v2
+    version: v2
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: echo
@@ -17,8 +17,9 @@ spec:
         version: v2
     spec:
       containers:
-        - image: jxlwqq/http-echo
-          name: echo
+        - name: echo
+          image: jxlwqq/http-echo
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           args:
