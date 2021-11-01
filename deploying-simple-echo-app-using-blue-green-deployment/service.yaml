@@ -8,4 +8,4 @@ spec:
     version: v1
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080

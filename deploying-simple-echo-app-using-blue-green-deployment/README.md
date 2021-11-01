@@ -7,8 +7,7 @@
 #### 前提条件：部署 nginx ingress
 
 ```bash
-cd ../ingress-nginx # 切换到 ingress-nginx 目录
-kubectl apply -f deploy.yaml
+kubectl apply -f ../ingress-nginx/deploy.yaml
 ```
 
 #### 部署 v1 版本的 echo Deployment
@@ -40,13 +39,13 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v1" # 响应请求，返回"echo-v1"
+            - "--text=echo-v1" # 响应请求，返回"echo-v1"
           ports:
             - name: http
               protocol: TCP
-              containerPort: 5678 # 容器端口号
+              containerPort: 8080 # 容器端口号
 ```
 
 #### 部署 v2 版本的 echo Deployment
@@ -78,13 +77,13 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v2" # 响应请求，返回"echo-v2"
+            - "--text=echo-v2" # 响应请求，返回"echo-v2"
           ports:
             - name: http
               protocol: TCP
-              containerPort: 5678
+              containerPort: 8080
 ```
 
 
@@ -109,7 +108,7 @@ spec:
     version: v1
   ports:
     - port: 80
-      targetPort: 5678
+      targetPort: 8080
 ```
 
 #### 创建 Ingress
@@ -118,7 +117,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: echo-ingress
+  name: echo-ing
 spec:
   rules:
     - http:
@@ -129,7 +128,7 @@ spec:
               service:
                 name: echo-svc
                 port:
-                  number: 5678
+                  number: 8080
   ingressClassName: nginx
 ```
 

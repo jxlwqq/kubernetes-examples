@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
         - name: echo
-          image: hashicorp/http-echo
+          image: jxlwqq/http-echo
           args:
-            - "-text=echo-v1"
+            - "--text=echo-v1"
           ports:
             - name: http
               protocol: TCP
-              containerPort: 5678
+              containerPort: 8080
