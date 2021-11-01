@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: nginx-virtual-service
+spec:
+  gateways:
+    - nginx-gateway
+  hosts:
+    - "*"
+  http:
+    - route:
+        - destination:
+            host: nginx-svc
+      fault:
+        abort:
+          percentage:
+            value: 50
+          httpStatus: 503
