@@ -1,0 +1,21 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  template:
+    metadata:
+      name: hello-knative
+    spec:
+      containers:
+        - image: gcr.io/knative-samples/helloworld-go
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "Knative"
+  traffic:
+    - latestRevision: true
+      percent: 50
+    - revisionName: hello-world
+      percent: 50

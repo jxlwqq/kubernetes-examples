@@ -61,6 +61,7 @@
 
 * [安装](knative/0.installing)
 * [自动扩缩](knative/1.autoscale)
+* [流量分流](knative/2.traffic-split)
 
 #### Operator
 
