@@ -55,6 +55,7 @@
 * [注入](istio/2.injection)
 * [虚拟服务](istio/3.virtual-service)
 * [目标规则](istio/4.destination-rule)
+* [故障注入](istio/5.fault-injection)
 
 #### Operator
 
