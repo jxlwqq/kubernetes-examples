@@ -8,7 +8,7 @@
 
 * 所有示例推荐在 Docker for Mac 内置的 Kubernetes 的集群上部署，请下载或更新到 Docker for Mac [最新版本](https://docs.docker.com/desktop/mac/release-notes/)。
 * 动手实验前，请先执行 `kubectl config current-content` 查看当前集群名称，确保切换到本地的 Kubernetes 集群。
-* Apple 芯片用户/ Windows 用户尚未完成全部测试，如有问题，请提 Issue。
+* Apple 芯片用户 / Windows 用户尚未完成全部测试，如有问题，请提 Issue。
 * 请勿用于生产环境。
 
 #### 经典示例
