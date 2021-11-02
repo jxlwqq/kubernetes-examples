@@ -60,6 +60,7 @@
 #### Knative
 
 * [安装](knative/0.installing)
+* [自动扩缩](knative/1.autoscale)
 
 #### Operator
 
