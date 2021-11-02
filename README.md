@@ -57,6 +57,10 @@
 * [目标规则](istio/4.destination-rule)
 * [故障注入](istio/5.fault-injection)
 
+#### Knative
+
+* [安装](knative/0.installing)
+
 #### Operator
 
 * [memcached-operator](https://github.com/jxlwqq/memcached-operator)：源于 Operator Framework 官方示例
