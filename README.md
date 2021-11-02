@@ -2,8 +2,6 @@
 
 [![Testing](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml/badge.svg)](https://github.com/jxlwqq/kubernetes-examples/actions/workflows/testing.yml)
 
-<img src='./ingress.png' width='400'>
-
 #### 说明
 
 * 所有示例推荐在 Docker for Mac 内置的 Kubernetes 的集群上部署，请下载或更新到 Docker for Mac [最新版本](https://docs.docker.com/desktop/mac/release-notes/)。
@@ -12,6 +10,8 @@
 * 请勿用于生产环境。
 
 #### 经典示例
+
+<img src='./ingress.png' width='400'>
 
 > [安装 Ingress 控制器：ingress-nginx](./ingress-nginx) 是以下示例的前提条件。
 
