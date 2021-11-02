@@ -1,17 +1,16 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: hello
+  name: http-echo
 spec:
   template:
     metadata:
       # This is the name of our new "Revision," it must follow the convention {service-name}-{revision-name}
-      name: hello-world
+      name: http-echo-v1
     spec:
       containers:
-        - image: gcr.io/knative-samples/helloworld-go
+        - image: jxlwqq/http-echo
           ports:
             - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "World"
+          args:
+            - "--text=v1"

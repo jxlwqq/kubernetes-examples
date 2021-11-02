@@ -36,7 +36,7 @@ kubectl apply -f eventing.yaml
 
 ### 安装第一个应用
 ```shell
-kubectl apply -f hello.yaml
+kubectl apply -f http-echo.yaml
 ```
 
 查看服务：
@@ -48,19 +48,19 @@ kn services list
 返回：
 
 ```
-AME    URL                                       LATEST        AGE     CONDITIONS   READY   REASON
-hello  http://hello.default.127.0.0.1.sslip.io   hello-world   8m27s   3 OK / 3     True
+NAME        URL                                           LATEST         AGE   CONDITIONS   READY   REASON
+http-echo   http://http-echo.default.127.0.0.1.sslip.io   http-echo-v1   21s   3 OK / 3     True  
 ```
 
 
 访问：
 
 ```
-curl http://hello.default.127.0.0.1.sslip.io
+curl http://http-echo.default.127.0.0.1.sslip.io
 ```
 
 返回：
 
 ```
-"Hello World!
+v1
 ```

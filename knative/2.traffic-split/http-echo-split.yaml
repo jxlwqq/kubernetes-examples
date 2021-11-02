@@ -1,21 +1,20 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: hello
+  name: http-echo
 spec:
   template:
     metadata:
-      name: hello-knative
+      name: http-echo-v2
     spec:
       containers:
-        - image: gcr.io/knative-samples/helloworld-go
+        - image: jxlwqq/http-echo
           ports:
             - containerPort: 8080
-          env:
-            - name: TARGET
-              value: "Knative"
+          args:
+            - "--text=v2"
   traffic:
     - latestRevision: true
       percent: 50
-    - revisionName: hello-world
+    - revisionName: http-echo-v1
       percent: 50
