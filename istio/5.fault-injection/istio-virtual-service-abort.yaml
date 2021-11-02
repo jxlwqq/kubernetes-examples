@@ -12,7 +12,7 @@ spec:
         - destination:
             host: nginx-svc
       fault:
-        delay:
+        abort:
           percentage:
-            value: 100
-          fixedDelay: 5s
+            value: 50
+          httpStatus: 503
