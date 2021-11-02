@@ -9,15 +9,19 @@
 
 ### 启动虚拟机
 
-虚拟机配置了 3 台 CentOS 7，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.12)`。配置详见 [Vagrantfile](./Vagrantfile) 这个文件。
+虚拟机配置了 3 台 CKA 考试平台对应的 Ubuntu 18.04 LTS，分别是 `k8s-1(192.168.205.10)`、`k8s-2(192.168.205.11)` 和 `k8s-3(192.168.205.12)`。配置详见 [Vagrantfile](./Vagrantfile)
+这个文件。
 
-虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 [config.vm.provision "shell"](./Vagrantfile#L39) 中信息。Vagrant 是用 Ruby 写的，语法都是通用的，应该能看懂，看不懂也没关系。
+虚拟机初始化的时候，已经帮助你安装了 Docker 环境，详见 [config.vm.provision "shell"](./Vagrantfile#L39) 中信息。Vagrant 是用 Ruby
+写的，语法都是通用的，应该能看懂，看不懂也没关系。
 
 ```shell
 git clone https://github.com/jxlwqq/kubernetes-examples.git # clone 仓库到本地
-cd installing-kubernetes-with-deployment-tools # 进入这个目录
-vagrant box add centos/7 # 提前下载操作系统镜像文件，方便后续快速启动
+cd cka-training # 进入这个目录
+vagrant box add ubuntu/bionic64 # 提前下载考试对应的操作系统镜像文件(ubuntu 18.04 LTS)，方便后续快速启动
 vagrant up # 启动虚拟机
+# vagrant halt # 关闭虚拟机
+# vagrant destroy #销毁虚拟机 
 ```
 
 ### 登录虚拟机
@@ -25,7 +29,7 @@ vagrant up # 启动虚拟机
 开3个命令行窗口，分别登录这3台虚拟机：
 
 ```shell
-cd installing-kubernetes-with-deployment-tools # 一定要进入在 Vagrantfile 所在的目录
+cd cka-training # 一定要进入在 Vagrantfile 所在的目录
 vagrant ssh k8s-1 # 这台作为 master
 vagrant ssh k8s-2 # node
 vagrant ssh k8s-3 # node
@@ -58,27 +62,22 @@ sudo sysctl --system
 使用阿里云的镜像进行安装：
 
 ```shell
-cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
-enabled=1
-gpgcheck=0
-repo_gpgcheck=0
-gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
-       http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
-EOF
 
-# 将 SELinux 设置为 permissive 模式（相当于将其禁用）
-sudo setenforce 0
-sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+
+sudo curl -s https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # 关闭 swap
-sudo swapoff -a
+swapoff -a
 
-sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
 
-sudo systemctl enable --now kubelet
+# 自动补全
+echo "source <(kubectl completion bash)" >> ~/.bashrc
 ```
 
 ### 配置 cgroup 驱动程序
@@ -159,6 +158,7 @@ sudo docker rmi coredns/coredns:1.8.4
 
 ```shell
 sudo kubeadm init --kubernetes-version=v1.22.0 --apiserver-advertise-address=192.168.205.10  --pod-network-cidr=10.244.0.0/16
+# sudo kubeadm reset # 尽最大努力还原通过 'kubeadm init' 或者 'kubeadm join' 操作对主机所做的更改
 ```
 
 根据返回的提示：设置：
@@ -189,6 +189,7 @@ kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
 ```shell
 sudo kubeadm join 192.168.205.10:6443 --token g012n6.65ete4bw7ys92tuv \
         --discovery-token-ca-cert-hash sha256:fdae044c194ed166f7b1b0746f5106008660ede517dd4cf436dfe68cc446c878
+# sudo kubeadm reset # 尽最大努力还原通过 'kubeadm init' 或者 'kubeadm join' 操作对主机所做的更改
 ```
 
 ### 安装 Pod 网络附加组件
@@ -221,7 +222,6 @@ k8s-1   Ready    control-plane,master   12m   v1.22.0
 k8s-2   Ready    <none>                 12m   v1.22.0
 k8s-3   Ready    <none>                 11m   v1.22.0
 ```
-
 
 ### 设置 KUBELET_EXTRA_ARGS
 
@@ -263,10 +263,10 @@ kubectl get nodes -o wide
 返回：
 
 ```shell
-NAME    STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION           CONTAINER-RUNTIME
-k8s-1   Ready    control-plane,master   49m   v1.22.0   192.168.205.10   <none>        CentOS Linux 7 (Core)   3.10.0-1127.el7.x86_64   docker://20.10.8
-k8s-2   Ready    <none>                 48m   v1.22.0   192.168.205.11   <none>        CentOS Linux 7 (Core)   3.10.0-1127.el7.x86_64   docker://20.10.8
-k8s-3   Ready    <none>                 37m   v1.22.0   192.168.205.12   <none>        CentOS Linux 7 (Core)   3.10.0-1127.el7.x86_64   docker://20.10.8
+NAME    STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION       CONTAINER-RUNTIME
+k8s-1   Ready    control-plane,master   49m   v1.22.0   192.168.205.10   <none>        Ubuntu 18.04.5 LTS   4.15.0-144-generic   docker://20.10.8
+k8s-2   Ready    <none>                 48m   v1.22.0   192.168.205.11   <none>        Ubuntu 18.04.5 LTS   4.15.0-144-generic   docker://20.10.8
+k8s-3   Ready    <none>                 37m   v1.22.0   192.168.205.12   <none>        Ubuntu 18.04.5 LTS   4.15.0-144-generic   docker://20.10.8
 ```
 
 ### 清理
@@ -279,8 +279,8 @@ vagrant destroy
 
 ### 参考
 
-* [Vagrant box centos/7](https://app.vagrantup.com/centos/boxes/7)
-* [Install Docker Engine on CentOS](https://docs.docker.com/engine/install/centos/)
+* [Vagrant box ubuntu/bionic64](https://app.vagrantup.com/ubuntu/boxes/bionic64)
+* [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 * [Installing kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/)
 * [Configure the Docker daemon, in particular to use systemd for the management of the container’s cgroups](https://kubernetes.io/docs/setup/production-environment/container-runtimes/#docker)
 * [Creating a cluster with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)

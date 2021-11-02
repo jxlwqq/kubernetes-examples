@@ -38,8 +38,8 @@
 
 #### 本地安装多节点集群
 
-* [vagrant-centos7-kubeadm](installing-kubernetes-with-deployment-tools)
-* [vagrant-ubuntu18.04-kubeadm](cka-training/1.installing.md)
+* [vagrant-centos7-kubeadm](multi-nodes-cluster/vagrant-centos7-kubeadm)
+* [vagrant-ubuntu18.04-kubeadm](multi-nodes-cluster/vagrant-ubuntu18.04-kubeadm)
 
 #### Certified Kubernetes Administrator (CKA) 
 
