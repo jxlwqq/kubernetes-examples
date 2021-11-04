@@ -1,10 +1,10 @@
 # 快速入门
 
-#### 前提
+### 前提
 
 * 启动 Docker For Mac，并开启 Kubernetes 功能；
 * 如果 Istio 相关组件在集群中无法正常运行，需要在 Docker 首选项的 Advanced 面板下增加 Docker 的 CPU 和内存限制；
-* (可选)提前拉取容器镜像，提升 Pod 启动速度：
+* （可选）提前拉取容器镜像，提升 Pod 启动速度：
 
 ```shell
 # 核心组件
@@ -25,7 +25,7 @@ docker pull docker.io/istio/examples-bookinfo-reviews-v3
 docker pull docker.io/istio/examples-bookinfo-productpage-v1
 ```
 
-#### 最小步骤
+### 最小步骤
 
 一共分为 9 个步骤，如下所示：
 
@@ -74,6 +74,17 @@ kubectl patch deployments.apps \
   {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/requiredDuringSchedulingIgnoredDuringExecution/nodeSelectorTerms/0/matchExpressions/0/values", "value": [amd64,arm64,ppc64le,s390x]}
   ]'
 ```
+
+### 命令行自动补全
+
+Zsh 用户：
+
+```
+mkdir -p ~/completions && istioctl collateral --zsh -o ~/completions
+echo "source ~/completions/_istioctl" >> ~/.zshrc
+```
+
+`~/completions` 目录用于存放补全提示文件，可自定义。
 
 ### 查看仪表板
 
