@@ -56,6 +56,7 @@
 * [虚拟服务](istio/3.virtual-service)
 * [目标规则](istio/4.destination-rule)
 * [故障注入](istio/5.fault-injection)
+* [熔断](istio/6.circuit-breaking)
 
 #### Knative
 
