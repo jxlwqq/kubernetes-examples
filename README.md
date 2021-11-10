@@ -57,6 +57,7 @@
 * [目标规则](istio/4.destination-rule)
 * [故障注入](istio/5.fault-injection)
 * [熔断](istio/6.circuit-breaking)
+* [gRPC 负载均衡](https://github.com/jxlwqq/grpc-lb)
 
 #### Knative
 
