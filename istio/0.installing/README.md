@@ -56,8 +56,10 @@ curl http://127.0.0.1/productpage
 ```shell
 # 使用社区（非官方）构建的 arm64 镜像（https://github.com/querycap/istio）：
 istioctl install --set hub=docker.io/querycapistio --set profile=demo -y
+```
 
-# 更新 istio-egressgateway 和 istio-ingressgateway 资源
+```shell
+# 更新 istio-egressgateway
 kubectl patch deployments.apps \
   istio-ingressgateway \
   --namespace istio-system \
@@ -66,7 +68,10 @@ kubectl patch deployments.apps \
   {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/preferredDuringSchedulingIgnoredDuringExecution/0/preference/matchExpressions/0/values", "value": [amd64,arm64]},
   {"op": "replace", "path": "/spec/template/spec/affinity/nodeAffinity/requiredDuringSchedulingIgnoredDuringExecution/nodeSelectorTerms/0/matchExpressions/0/values", "value": [amd64,arm64,ppc64le,s390x]}
   ]'
-  
+```
+
+```shell
+# 更新 istio-ingressgateway
 kubectl patch deployments.apps \
   istio-egressgateway \
   --namespace istio-system \
