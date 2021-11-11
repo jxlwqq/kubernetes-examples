@@ -34,7 +34,7 @@ spec:
 
 通过 `curl -H "Host: web.example.com" 127.0.0.1`，我们可以访问 Web 前端服务。
 
-通过 `curl -H "Host: web.example.com" 127.0.0.1`, 我们可以访问 Customers 后端服务。
+通过 `curl -H "Host: svc.example.com" 127.0.0.1`，我们可以访问 Customers 后端服务。
 
 
 ### 部署 Customers 后端服务
