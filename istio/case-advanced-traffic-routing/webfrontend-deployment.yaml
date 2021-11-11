@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-frontend
+  labels:
+    app: web-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-frontend
+  template:
+    metadata:
+      labels:
+        app: web-frontend
+        version: v1
+    spec:
+      containers:
+        - image: gcr.io/tetratelabs/web-frontend:1.0.0
+          imagePullPolicy: Always
+          name: web
+          ports:
+            - containerPort: 8080
+          env:
+            - name: CUSTOMER_SERVICE_URL
+              value: 'http://customers.default.svc.cluster.local'

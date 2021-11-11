@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: customers
+  labels:
+    app: customers
+spec:
+  selector:
+    app: customers
+  ports:
+    - port: 80
+      name: http
+      targetPort: 3000

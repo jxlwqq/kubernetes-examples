@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customers-v1
+  labels:
+    app: customers
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customers
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: customers
+        version: v1
+    spec:
+      containers:
+        - image: gcr.io/tetratelabs/customers:1.0.0
+          imagePullPolicy: Always
+          name: svc
+          ports:
+            - containerPort: 3000

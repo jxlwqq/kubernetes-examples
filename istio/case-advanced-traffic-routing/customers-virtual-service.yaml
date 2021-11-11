@@ -1,0 +1,42 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: customers
+spec:
+  hosts:
+    - 'svc.example.com'
+    - 'customers.default.svc.cluster.local'
+  gateways:
+    - sample-gateway
+    - mesh
+  http:
+    - match:
+        - gateways:
+            - mesh
+          headers:
+            user:
+              exact: debug
+      route:
+        - destination:
+            host: customers.default.svc.cluster.local
+            port:
+              number: 80
+            subset: v2
+    - match:
+        - gateways:
+            - mesh
+      route:
+        - destination:
+            host: customers.default.svc.cluster.local
+            port:
+              number: 80
+            subset: v1
+    - match:
+        - gateways:
+            - sample-gateway
+      route:
+        - destination:
+            host: customers.default.svc.cluster.local
+            port:
+              number: 80
+            subset: v2

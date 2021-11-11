@@ -1,0 +1,10 @@
+resources:
+  - istio-gateway.yaml
+  - customers-deployment-v1.yaml
+  - customers-deployment-v2.yaml
+  - customers-service.yaml
+  - customers-virtual-service.yaml
+  - customers-destination-rule.yaml
+  - webfrontend-deployment.yaml
+  - webfrontend-service.yaml
+  - webfrontend-virtual-service.yaml
