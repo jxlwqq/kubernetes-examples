@@ -26,7 +26,8 @@ package.json 文件包含项目所需的依赖。
 
 ```dockerfile
 # 从官方仓库中获取最新版的 Node 基础镜像
-FROM node:14
+# syntax=docker/dockerfile:1
+FROM --platform=$TARGETPLATFORM node:14-alpine
 # 设置工作目录
 WORKDIR /usr/src/app
 # 复制项目依赖文件
