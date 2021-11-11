@@ -25,7 +25,8 @@ requirements.txt 文件包含 app.py 所需的依赖，pip 将使用它来安装
 
 ```dockerfile
 # 从官方仓库中获取最新版的 Python 基础镜像
-FROM python
+# syntax=docker/dockerfile:1
+FROM --platform=$TARGETPLATFORM python:alpine
 # 设置工作目录
 WORKDIR /
 # 复制项目文件

@@ -1,4 +1,5 @@
-FROM python
+# syntax=docker/dockerfile:1
+FROM --platform=$TARGETPLATFORM python:alpine
 
 WORKDIR /
 ADD . /
