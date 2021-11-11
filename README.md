@@ -59,6 +59,7 @@
 * [熔断](istio/6.circuit-breaking)
 * [案例：gRPC 负载均衡](https://github.com/jxlwqq/grpc-lb)
 * [案例：高级流量路由](istio/case-advanced-traffic-routing)
+* [案例：在线精品店](istio/case-online-boutique)
 
 #### Knative
 
