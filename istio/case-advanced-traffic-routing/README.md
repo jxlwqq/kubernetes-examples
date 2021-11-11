@@ -1,6 +1,6 @@
 # 高级流量路由
 
-本示例为一个简单的 Customer List 微服务应用，由 [Tetrate](https://academy.tetrate.io/) 创建。访问 Web 页面，将展示客户信息。
+本示例为一个简单的 Customer List 微服务应用，由 [Tetrate](https://academy.tetrate.io/) 创建。访问 Web 页面，将展示顾客信息。
 
 
 我们将部署 Web 前端、Customers v1、Customers v2，以及相应的 Gateway、 VirtualServices 和 DestinationRule。其中 Customers v1 仅返回顾客姓名，而 Customers v2 返回顾客的姓名和所在城市。
