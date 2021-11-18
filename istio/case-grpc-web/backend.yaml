@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: server
+  labels:
+    app: server
+    service: server
+spec:
+  ports:
+    - port: 8080
+      name: grpc-web
+      targetPort: 8080
+      appProtocol: grpc-web # https://istio.io/latest/zh/docs/ops/configuration/traffic-management/protocol-selection/
+  selector:
+    app: server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server
+  labels:
+    app: server
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: server
+        version: v1
+    spec:
+      containers:
+        - name: server
+          image: nadera2/grpc-web-server
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          securityContext:
+            runAsUser: 1000
