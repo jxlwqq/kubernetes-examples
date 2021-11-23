@@ -87,8 +87,8 @@ kubectl patch deployments.apps \
 Zsh 用户：
 
 ```
-mkdir -p ~/completions && istioctl collateral --zsh -o ~/completions
-echo "source ~/completions/_istioctl" >> ~/.zshrc
+echo "source <(istioctl completion zsh)
+compdef _istioctl istioctl" >> ~/.zprofile
 ```
 
 `~/completions` 目录用于存放补全提示文件，可自定义。
