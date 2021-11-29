@@ -23,7 +23,7 @@ kubectl apply -f deploy.yaml
 docker pull jxlwqq/http-echo
 ```
 
-http-echo 是一个非常小巧的，运行在内存中的 web 服务器，它呈现一个 HTML 页面，其中包含提供给它的参数的内容。这对于测试或演示“hello world”程序特别有用。
+[jxlwqq/http-echo](https://github.com/jxlwqq/http-echo) 是一个非常小巧的，运行在内存中的 web 服务器，它呈现一个 HTML 页面，其中包含提供给它的参数的内容。这对于测试或演示“hello world”程序特别有用。
 
 #### 部署 v1 版本的 echo 服务
 

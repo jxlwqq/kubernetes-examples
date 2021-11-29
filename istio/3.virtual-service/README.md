@@ -2,7 +2,7 @@
 
 ### Demo 介绍
 
-基于 jxlwqq/http-echo 镜像，我们部署两个简单的 Web 服务。访问它们时，分别返回 `v1` 和 `v2`。
+基于 [jxlwqq/http-echo](https://github.com/jxlwqq/http-echo) 镜像，我们部署两个简单的 Web 服务。访问它们时，分别返回 `v1` 和 `v2`。
 
 ### 部署
 
