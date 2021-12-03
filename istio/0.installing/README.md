@@ -91,8 +91,6 @@ echo "source <(istioctl completion zsh)
 compdef _istioctl istioctl" >> ~/.zprofile
 ```
 
-`~/completions` 目录用于存放补全提示文件，可自定义。
-
 ### 查看仪表板
 
 打入流量：
