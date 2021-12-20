@@ -82,3 +82,9 @@
 * [当你创建了一个 Deployment 时，Kubernetes 内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-create-a-deployment.md)
 * [当一个请求到达 kube-apiserver 时，Kubernetes 内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-a-request-hits-kube-apiserver.md)
 * [当一个 Pod 被调度时，Kubernetes 内部发生了什么？](./learn-from-source-code/what-happens-in-kubernetes-when-schedule-a-pod.md)
+
+#### 鸣谢
+
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/)
+
+本项目受到了来自 JetBrains 的产品的支持，在此表示感谢。
