@@ -61,6 +61,7 @@
 * [案例：待办清单](https://github.com/jxlwqq/todo)
 * [案例：高级流量路由](istio/case-advanced-traffic-routing)
 * [案例：在线精品店](istio/case-online-boutique)
+* [案例：博客](https://github.com/jxlwqq/blog-microservices)
 
 #### Knative
 
