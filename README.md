@@ -11,7 +11,7 @@
 
 #### 经典示例
 
-<img src='./ingress.png' width='400'>
+<img src='./ingress.png' width='400' alt="ingress">
 
 > [安装 Ingress 控制器：ingress-nginx](./ingress-nginx) 是以下示例的前提条件。
 
@@ -62,6 +62,10 @@
 * [案例：高级流量路由](istio/case-advanced-traffic-routing)
 * [案例：在线精品店](istio/case-online-boutique)
 * [案例：博客](https://github.com/jxlwqq/blog-microservices)
+
+#### Dapr
+
+* [安装](dapr/0.installing)
 
 #### Knative
 
