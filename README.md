@@ -66,6 +66,7 @@
 #### Dapr
 
 * [安装](dapr/0.installing)
+* [Hello Kubernetes](dapr/1.hello-kubernetes)
 
 #### Knative
 
