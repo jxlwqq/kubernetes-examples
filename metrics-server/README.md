@@ -2,7 +2,7 @@
 
 ### 部署
 
-部署完组件后，需要 patch 下一个参数，才能正常运行：
+部署完 [Metrics Server 组件](https://github.com/kubernetes-sigs/metrics-server)后，需要 patch 下一个参数，才能正常运行：
 
 ```shell
 # 部署组件
@@ -14,7 +14,7 @@ kubectl patch deployments.apps \
   --type='json' \
   -p='[{"op": "replace", "path": "/spec/template/spec/containers/0/args", "value": [
   "--cert-dir=/tmp",
-  "--secure-port=443",
+  "--secure-port=4443",
   "--kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname",
   "--kubelet-use-node-status-port",
   "--metric-resolution=15s",
