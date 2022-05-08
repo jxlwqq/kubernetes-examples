@@ -54,8 +54,8 @@ curl http://127.0.0.1/productpage
 
 解决方案：
 ```shell
-# 使用社区（非官方）构建的 arm64 镜像（https://github.com/querycap/istio）：
-istioctl install --set hub=docker.io/querycapistio --set profile=demo -y
+# 使用社区（非官方）构建的 arm64 镜像（https://github.com/resf/istio）：
+istioctl install --set hub=ghcr.io/resf/istio --set profile=demo -y
 ```
 
 ```shell
