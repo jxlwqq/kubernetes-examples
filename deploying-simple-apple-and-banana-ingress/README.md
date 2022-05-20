@@ -56,7 +56,7 @@ kubectl apply -f apple-deployment-and-service.yaml
 #### 创建 Banana 资源（kind: Deployment 与 kind: Service）
 
 ```bash
-kubectl apply -f apple-deployment-and-service.yaml
+kubectl apply -f banana-deployment-and-service.yaml
 ```
 
 #### 创建 Ingress 资源（kind: Ingress）
