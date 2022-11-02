@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-spring
+spec:
+  selector:
+    matchLabels:
+      app: hello-spring
+  template:
+    metadata:
+      labels:
+        app: hello-spring
+    spec:
+      containers:
+      - name: hello-spring
+        image: jxlwqq/hello-spring:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-spring-svc
+spec:
+  selector:
+    app: hello-spring
+  ports:
+    - port: 8080
+      targetPort: 8080
