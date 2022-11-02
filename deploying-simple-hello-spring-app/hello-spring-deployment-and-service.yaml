@@ -16,7 +16,7 @@ spec:
         image: jxlwqq/hello-spring:latest
         resources:
           limits:
-            memory: "128Mi"
+            memory: "1Gi"
             cpu: "500m"
         ports:
         - containerPort: 8080
