@@ -27,6 +27,7 @@
 * [部署一个简单的 Gin 应用](deploying-simple-hello-gin-app)  
 * [部署一个简单的 Flask 应用](deploying-simple-hello-flask-app)
 * [部署一个简单的 Express 应用](deploying-simple-hello-express-app)
+* [部署一个简单的 Spring 应用](deploying-simple-hello-spring-app)
 * [使用蓝绿发布策略部署一个 echo 应用](deploying-simple-echo-app-using-blue-green-deployment)
 * [使用金丝雀发布策略部署一个 echo 应用](deploying-simple-echo-app-using-canary-deployment)
 * [部署一个基本的 StatefulSet 应用](deploying-basic-statefulset-app)
