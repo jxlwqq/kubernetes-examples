@@ -1,0 +1,71 @@
+# rollout
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: http-echo
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+      maxSurge: 20%
+      maxUnavailable: 0
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: http-echo
+  template:
+    metadata:
+      labels:
+        app: http-echo
+    spec:
+      containers:
+      - name: http-echo
+        image: jxlwqq/http-echo
+        args:
+        - --text=v1
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+---
+# http-echo-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: http-echo
+  name: http-echo
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: http-echo
+---
+# http-echo-ing.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: http-echo
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: http-echo
+            port:
+              number: 8080
+  ingressClassName: nginx
