@@ -18,3 +18,44 @@ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rele
 brew install argoproj/tap/kubectl-argo-rollouts
 kubectl argo rollouts version
 ```
+
+### yaml
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: http-echo
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+      maxSurge: 20%
+      maxUnavailable: 0
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: http-echo
+  template:
+    metadata:
+      labels:
+        app: http-echo
+    spec:
+      containers:
+      - name: http-echo
+        image: jxlwqq/http-echo
+        args:
+        - --text=v1
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+```
